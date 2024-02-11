@@ -1,0 +1,19 @@
+{
+  "configurations": [
+    {
+      "name": "Linux-gcc",
+      "includePath": [
+        "${workspaceFolder}/src"
+        //   "/usr/include/wx-3.0",
+        //   "/usr/lib64/wx/include/gtk3-unicode-3.0",
+        //   "lua_gamewave/include"
+      ],
+      // "defines": ["WX_PRECOMP", "__WXGTK__", "_FILE_OFFSET_BITS=64"],
+      "compilerPath": "/usr/bin/g++",
+      "cStandard": "c23",
+      "cppStandard": "c++23",
+      "intelliSenseMode": "linux-gcc-x64"
+    }
+  ],
+  "version": 4
+}

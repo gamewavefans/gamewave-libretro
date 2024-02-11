@@ -1,0 +1,6 @@
+[submodule "src/lua_gamewave"]
+	path = src/lua_gamewave
+	url = https://github.com/gamewavefans/lua_gamewave
+[submodule "src/deps/libretro-common"]
+	path = src/deps/libretro-common
+	url = https://github.com/libretro/libretro-common/
