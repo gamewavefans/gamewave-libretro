@@ -39,11 +39,11 @@ bool DizManager::readFile(const std::string filename)
     std::string currentPlatformVersion = {};
     while (getline(file, line))
     {
-        if (!line.compare("[global]\r"))
+        if (!DizManager::removeNewlines(line).compare("[global]"))
         {
             currentSection = DizSection::GLOBAL;
         }
-        else if (!line.compare("[platform]\r"))
+        else if (!DizManager::removeNewlines(line).compare("[platform]"))
         {
             currentSection = DizSection::PLATFORM;
             // skip bumping for the first found correct platform
@@ -107,6 +107,13 @@ bool DizManager::readFile(const std::string filename)
             }
         }
     }
+    // TODO separate function for this?
+    if (currentPlatformBoard != "" && currentPlatformEngine != "")
+    {
+        DizPlatform platform = DizPlatform(currentPlatformBoard, currentPlatformEngine, currentPlatformVersion);
+        this->platforms.push_back(platform);
+        currentPlatform++;
+    }
 
     file.close();
     return true;
@@ -114,7 +121,6 @@ bool DizManager::readFile(const std::string filename)
 
 constexpr std::string DizManager::removeNewlines(std::string s)
 {
-    return s;
     std::size_t found = s.find("\r");
     if (found != std::string::npos)
     {

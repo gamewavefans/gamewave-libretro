@@ -17,6 +17,13 @@ $ cmake --build build -- all test # compile and run the tests
 /usr/bin/flatpak run --branch=stable --arch=x86_64 --command=retroarch org.libretro.RetroArch -L /home/halamix2/repos/reverse/gamewave/gamewave-libretro/build/src/gamewave_libretro.so "/home/halamix2/repos/reverse/gamewave/games/Click! (USA)/gamewave.diz"
 ```
 
+# Unit tests
+
+```bash
+cmake -E make_directory build
+cmake --build build -- all test # compile and run the tests
+```
+
 # What's working
 
 - nothing

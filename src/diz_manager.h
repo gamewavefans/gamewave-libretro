@@ -4,8 +4,6 @@
 #include <fstream>
 #include <vector>
 
-#include "deps/libretro-common/include/libretro.h"
-
 enum class DizSection
 {
     NONE,

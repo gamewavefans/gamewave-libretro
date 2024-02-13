@@ -1,0 +1,9 @@
+[global]
+appname=Game Name
+appfile=/Data/game.zbc
+version=1.0.0global
+
+[platform]
+board=3
+engine=/Data/app_sdram_3.cat.bin
+version=1.0.0platform

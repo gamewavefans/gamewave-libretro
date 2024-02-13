@@ -59,6 +59,10 @@
     "fstream": "cpp",
     "iostream": "cpp",
     "cinttypes": "cpp",
-    "*.in": "cpp"
+    "*.in": "cpp",
+    "any": "cpp",
+    "set": "cpp",
+    "iomanip": "cpp",
+    "variant": "cpp"
   }
 }
