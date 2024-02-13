@@ -26,7 +26,7 @@ cmake --build build -- all test # compile and run the tests
 
 # What's working
 
-- nothing
+- loading .diz files
 
 # What's not working
 
