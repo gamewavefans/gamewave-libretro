@@ -39,5 +39,6 @@ if (IS_BIG_ENDIAN)
 endif()
 
 enable_testing()
-add_subdirectory(src)
-add_subdirectory(tests)
+add_subdirectory("src")
+add_subdirectory("tests")
+add_subdirectory ("docs")

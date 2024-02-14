@@ -3,11 +3,12 @@ find_package(Threads REQUIRED)
 
 set(LINKER_SCRIPT "${CMAKE_SOURCE_DIR}/link.T")
 
-add_library(gamewave_libretro SHARED
+set(GAMEWAVE_SOURCE
     libretro.cpp
     gamewave.cpp
-    diz_manager.cpp
-)
+    diz_manager.cpp)
+
+add_library(gamewave_libretro SHARED ${GAMEWAVE_SOURCE})
 
 set_target_properties(gamewave_libretro PROPERTIES PREFIX "")
 set(CMAKE_EXE_LINKER_FLAGS "-T ${LINKER_SCRIPT}")
