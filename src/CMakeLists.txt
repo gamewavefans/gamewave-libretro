@@ -22,11 +22,11 @@ set_source_files_properties(
 add_custom_target(
     zlua
     COMMAND make
-    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/deps/lua_gamewave
+    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/../deps/lua_gamewave
 )
 add_dependencies(gamewave_libretro zlua)
 
-target_link_libraries(gamewave_libretro PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/deps/lua_gamewave/lib/liblua.a  ${CMAKE_CURRENT_SOURCE_DIR}/deps/lua_gamewave/lib/liblualib.a)
+target_link_libraries(gamewave_libretro PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../deps/lua_gamewave/lib/liblua.a  ${CMAKE_CURRENT_SOURCE_DIR}/../deps/lua_gamewave/lib/liblualib.a)
 message("${CMAKE_CURRENT_SOURCE_DIR}")
 # set the same type for numbers as expected
 target_compile_definitions(gamewave_libretro PRIVATE LUA_NUMBER=int)
@@ -34,7 +34,7 @@ target_compile_definitions(gamewave_libretro PRIVATE LUA_NUMBER=int)
 # clean-zlua target cleans zlua build artifacts
 add_custom_target(clean-zlua
     COMMAND cmake --build "${CMAKE_CURRENT_BINARY_DIR}" --target clean
-    COMMAND cd ${CMAKE_CURRENT_SOURCE_DIR}/deps/lua_gamewave && make clean
+    COMMAND cd ${CMAKE_CURRENT_SOURCE_DIR}/../deps/lua_gamewave && make clean
 )
 
 hunter_add_package(ZLIB)

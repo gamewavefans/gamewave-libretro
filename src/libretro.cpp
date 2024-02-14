@@ -5,7 +5,6 @@
 #include <cstdlib>
 #include <memory>
 
-#include "deps/libretro-common/include/libretro.h"
 #include "gamewave.h"
 
 std::unique_ptr<Gamewave> gamewave = std::make_unique<Gamewave>();
