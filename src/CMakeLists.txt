@@ -3,10 +3,9 @@ find_package(Threads REQUIRED)
 
 set(LINKER_SCRIPT "${CMAKE_SOURCE_DIR}/link.T")
 
-set(GAMEWAVE_SOURCE
-    libretro.cpp
-    gamewave.cpp
-    diz_manager.cpp)
+file(GLOB_RECURSE GAMEWAVE_LIBRETRO_SOURCE_FILES ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp)
+
+set(GAMEWAVE_SOURCE ${GAMEWAVE_LIBRETRO_SOURCE_FILES})
 
 add_library(gamewave_libretro SHARED ${GAMEWAVE_SOURCE})
 

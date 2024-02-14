@@ -4,17 +4,24 @@
 #include <fstream>
 #include <vector>
 
-// DizSection is a helper enum for parsing Diz files,
-// we store info about the currently processed section of the file
+/** DizSection is a helper enum for parsing Diz files,
+ * we store info about the currently processed section of the file
+ */
 enum class DizSection
 {
     NONE,
     GLOBAL,
     PLATFORM
 };
+
+/** DizPlatform stores information about a platform from a .diz file
+ *
+ */
 class DizPlatform
 {
 public:
+    /** Stores information about a platform from a .diz file
+     */
     DizPlatform(const std::string board, const std::string engine, const std::string version);
     std::string getBoard();
     std::string getEngine();
@@ -31,6 +38,12 @@ private:
 class DizManager
 {
 public:
+    /**
+     * @brief readFile reads .diz file and stores its values
+     *
+     * @param filename path to a .diz file
+     * @return Returns true if a file was read succesfully
+     */
     bool readFile(const std::string filename);
 
     /** retrieves appname field
@@ -44,6 +57,9 @@ public:
     /** retrieves version field, if it exists
      */
     std::string getVersion();
+
+    /** returns vector of platforms
+     */
     std::vector<DizPlatform> getPlatforms();
 
 private:
