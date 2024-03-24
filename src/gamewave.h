@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../deps/libretro-common/include/libretro.h"
+#include "deps/libretro-common/include/libretro.h"
 #include "diz_manager.h"
 
 class Gamewave

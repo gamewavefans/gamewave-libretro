@@ -7,21 +7,21 @@ New libretro core loosely based on [Vectrexia](https://github.com/beardypig/vect
 To compile this `libretro` core use `cmake`. Your C++ compiler must support the C++23 standard.
 
 ```shell
-$ cmake -E make_directory build && cmake -E chdir build cmake ..
-$ cmake --build build -- all test # compile and run the tests
+meson setup build # add "-Dbuildtype=debug" for a debug build
+meson compile -C build
 ```
 
 # Testing core?
 
 ```bash
-/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=retroarch org.libretro.RetroArch -L /home/halamix2/repos/reverse/gamewave/gamewave-libretro/build/src/gamewave_libretro.so "/home/halamix2/repos/reverse/gamewave/games/Click! (USA)/gamewave.diz"
+/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=retroarch org.libretro.RetroArch -L /home/halamix2/repos/reverse/gamewave/gamewave-libretro/build/libgamewave_libretro.so "/home/halamix2/repos/reverse/gamewave/games/Click! (USA)/gamewave.diz"
 ```
 
 # Unit tests
 
 ```bash
-cmake -E make_directory build
-cmake --build build -- all test # compile and run the tests
+meson setup build # add "-Dbuildtype=debug" for a debug build
+meson test -C build
 ```
 
 # What's working

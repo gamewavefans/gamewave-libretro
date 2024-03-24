@@ -1,6 +1,3 @@
 [submodule "deps/libretro-common"]
 	path = deps/libretro-common
 	url = https://github.com/libretro/libretro-common/
-[submodule "deps/lua_gamewave"]
-	path = deps/lua_gamewave
-	url = https://github.com/gamewavefans/lua_gamewave

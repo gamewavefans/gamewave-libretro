@@ -31,3 +31,7 @@
 # Debug files
 *.dSYM/
 build/
+
+# downloaded meson subprojects
+subprojects
+.vscode
