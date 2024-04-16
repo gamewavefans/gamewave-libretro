@@ -83,7 +83,7 @@ void retro_get_system_av_info(struct retro_system_av_info *info)
     info->geometry.base_height = 480;
     info->geometry.max_width = 720;
     info->geometry.max_height = 480;
-    info->geometry.aspect_ratio = 1.33f;
+    info->geometry.aspect_ratio = 1.33F;
 
     info->timing.fps = 60;
     // movies are in 44100, sounds appear to be 22050
