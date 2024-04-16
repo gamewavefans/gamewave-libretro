@@ -22,7 +22,7 @@ class DizPlatform
 public:
     /** Stores information about a platform from a .diz file
      */
-    DizPlatform(const std::string board, const std::string engine, const std::string version);
+    DizPlatform(const std::string &board, const std::string &engine, const std::string &version);
     std::string getBoard();
     std::string getEngine();
     std::string getVersion();
@@ -44,7 +44,7 @@ public:
      * @param filename path to a .diz file
      * @return Returns true if a file was read succesfully
      */
-    bool readFile(const std::string filename);
+    bool readFile(const std::string &filename);
 
     /** retrieves appname field
      */

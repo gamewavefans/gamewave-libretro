@@ -111,6 +111,7 @@ void retro_init(void)
     // Set the controller descriptor
     // TODO - if this works copy-paste for ID 1-5 for 5 more remotes
     // TODO - look up retro_set_controller_port_device
+    // skipcq: CXX-W2066
     struct retro_input_descriptor desc[] = {
         // SNES -> X360 mapping for ABCD, hopefully
         {0, RETRO_DEVICE_JOYPAD, 0, RETRO_DEVICE_ID_JOYPAD_B, "A"},

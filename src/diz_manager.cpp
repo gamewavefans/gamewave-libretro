@@ -1,6 +1,6 @@
 #include "diz_manager.h"
 
-DizPlatform::DizPlatform(const std::string board, const std::string engine, const std::string version)
+DizPlatform::DizPlatform(const std::string &board, const std::string &engine, const std::string &version)
 {
     this->board = board;
     this->engine = engine;
@@ -22,7 +22,7 @@ std::string DizPlatform::getVersion()
     return version;
 }
 
-bool DizManager::readFile(const std::string filename)
+bool DizManager::readFile(const std::string &filename)
 {
     this->filePath = filename;
     std::ifstream file(filePath);
@@ -39,11 +39,11 @@ bool DizManager::readFile(const std::string filename)
     std::string currentPlatformVersion = {};
     while (getline(file, line))
     {
-        if (!DizManager::removeNewlines(line).compare("[global]"))
+        if (DizManager::removeNewlines(line) == "[global]")
         {
             currentSection = DizSection::GLOBAL;
         }
-        else if (!DizManager::removeNewlines(line).compare("[platform]"))
+        else if (DizManager::removeNewlines(line) == "[platform]")
         {
             currentSection = DizSection::PLATFORM;
             // skip bumping for the first found correct platform
@@ -121,12 +121,12 @@ bool DizManager::readFile(const std::string filename)
 
 constexpr std::string DizManager::removeNewlines(std::string s)
 {
-    std::size_t found = s.find("\r");
+    std::size_t found = s.find('\r');
     if (found != std::string::npos)
     {
         s.erase(found, 1);
     }
-    found = s.find("\n");
+    found = s.find('\n');
     if (found != std::string::npos)
     {
         s.erase(found, 1);

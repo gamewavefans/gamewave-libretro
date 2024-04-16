@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
-#include <locale.h>
+#include <clocale>
 
 int main(int argc, char *argv[])
 {
