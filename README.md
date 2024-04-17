@@ -4,7 +4,7 @@ New libretro core loosely based on [Vectrexia](https://github.com/beardypig/vect
 
 ## Compilation
 
-To compile this `libretro` core use `cmake`. Your C++ compiler must support the C++23 standard.
+To compile this `libretro` core use `meson`. Your C++ compiler must support the C++23 standard.
 
 ```shell
 meson setup build # add "-Dbuildtype=debug" for a debug build
@@ -43,8 +43,8 @@ meson test -C build
 - libretro (included with git submodule)
 - libpthread
 - Lua 5.0.2, [with Gamewave-specific changes](https://github.com/gamewavefans/lua_gamewave)
-- zlib - included by Hunter
-- ffmpeg - included by Hunter
+- zlib
+- ffmpeg
 <!-- - libyuv - included by Hunter -->
 
 # Possible future deps:

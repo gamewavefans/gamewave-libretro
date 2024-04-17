@@ -41,6 +41,8 @@ gamewave_libretro = both_libraries(
   soversion: meson.project_version(),
   dependencies: [lua_gamewave],
   link_args: ['-Wl,--version-script,' + meson.current_source_dir() + '/link.T'],
+  # prevents library getting named libgamewave_libretro
+  name_prefix: '',
 )
 
 gtest_proj = subproject('gtest')
