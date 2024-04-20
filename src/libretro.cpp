@@ -4,6 +4,8 @@
 #include <cstring>
 #include <cstdlib>
 #include <memory>
+#include <array>
+#include <random>
 
 #include "gamewave.h"
 
@@ -112,8 +114,8 @@ void retro_init(void)
     // TODO - if this works copy-paste for ID 1-5 for 5 more remotes
     // TODO - look up retro_set_controller_port_device
     // skipcq: CXX-W2066
-    struct retro_input_descriptor desc[] = {
-        // SNES -> X360 mapping for ABCD, hopefully
+    std::array desc = std::to_array<retro_input_descriptor>({
+        //  SNES -> X360 mapping for ABCD, hopefully
         {0, RETRO_DEVICE_JOYPAD, 0, RETRO_DEVICE_ID_JOYPAD_B, "A"},
         {0, RETRO_DEVICE_JOYPAD, 0, RETRO_DEVICE_ID_JOYPAD_A, "B"},
         {0, RETRO_DEVICE_JOYPAD, 0, RETRO_DEVICE_ID_JOYPAD_Y, "C"},
@@ -129,8 +131,8 @@ void retro_init(void)
         {0, RETRO_DEVICE_JOYPAD, 0, RETRO_DEVICE_ID_JOYPAD_DOWN, "Keypad 0"},
 
         {0},
-    };
-    environ_cb(RETRO_ENVIRONMENT_SET_INPUT_DESCRIPTORS, desc);
+    });
+    environ_cb(RETRO_ENVIRONMENT_SET_INPUT_DESCRIPTORS, desc.data());
 }
 
 void retro_deinit(void) {}
@@ -139,15 +141,30 @@ void retro_reset(void)
 {
 }
 
-// TODO
-unsigned int framebuffer[720 * 480];
+// each pixel is in RETRO_PIXEL_FORMAT_XRGB8888 format, X is ignored
+std::array<unsigned int, 720 * 480 * 3> framebuffer;
+
+std::random_device rd;
+std::default_random_engine mt(rd());
+std::uniform_real_distribution<double> distribution(0.0, 255.0);
+
+// TODO move it elsewhere
+unsigned int packPixel(uint8_t r, uint8_t g, uint8_t b)
+{
+    return (static_cast<int>(r) << 16) + (static_cast<int>(g) << 8) + static_cast<int>(b);
+}
 
 void retro_run(void)
 {
+
+    for (auto &pixel : framebuffer)
+    {
+        auto rand = distribution(mt);
+        pixel = packPixel(rand, rand, rand);
+    }
     // refresh inputs
     input_poll_cb();
-
-    video_cb(framebuffer, 720, 480, sizeof(unsigned int) * 720);
+    video_cb(framebuffer.data(), 720, 480, sizeof(unsigned int) * 720);
 }
 
 // Load a cartridge
