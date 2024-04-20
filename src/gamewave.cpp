@@ -10,13 +10,13 @@ void Gamewave::setLogCallback(const retro_log_printf_t log_cb)
     this->log_cb = log_cb;
 }
 
-bool Gamewave::loadGame(const char *filename)
+bool Gamewave::loadGame(const char *filePath)
 {
     DizManager diz = DizManager();
-    bool dizLoaded = diz.readFile(filename);
+    bool dizLoaded = diz.readFile(filePath);
     if (!dizLoaded)
     {
-        log_cb(RETRO_LOG_ERROR, "Could not load %s\n", filename);
+        log_cb(RETRO_LOG_ERROR, "Could not load %s\n", filePath);
         return false;
     }
     log_cb(RETRO_LOG_DEBUG, "[DIZ] Game name: %s\n", diz.getAppName().c_str());

@@ -7,24 +7,24 @@ DizPlatform::DizPlatform(const std::string &board, const std::string &engine, co
     this->version = version;
 }
 
-std::string DizPlatform::getBoard()
+std::string DizPlatform::getBoard() const
 {
     return board;
 }
 
-std::string DizPlatform::getEngine()
+std::string DizPlatform::getEngine() const
 {
     return engine;
 }
 
-std::string DizPlatform::getVersion()
+std::string DizPlatform::getVersion() const
 {
     return version;
 }
 
-bool DizManager::readFile(const std::string &filename)
+bool DizManager::readFile(const std::string &filePath)
 {
-    this->filePath = filename;
+    this->filePath = filePath;
     std::ifstream file(filePath);
     if (!file.is_open())
     {
@@ -33,7 +33,6 @@ bool DizManager::readFile(const std::string &filename)
     std::string line = {};
     DizSection currentSection = {DizSection::NONE};
 
-    int currentPlatform = {0};
     std::string currentPlatformBoard = {};
     std::string currentPlatformEngine = {};
     std::string currentPlatformVersion = {};
@@ -51,7 +50,6 @@ bool DizManager::readFile(const std::string &filename)
             {
                 DizPlatform platform = DizPlatform(currentPlatformBoard, currentPlatformEngine, currentPlatformVersion);
                 this->platforms.push_back(platform);
-                currentPlatform++;
             }
         }
         else if (currentSection == DizSection::GLOBAL)
@@ -112,7 +110,6 @@ bool DizManager::readFile(const std::string &filename)
     {
         DizPlatform platform = DizPlatform(currentPlatformBoard, currentPlatformEngine, currentPlatformVersion);
         this->platforms.push_back(platform);
-        currentPlatform++;
     }
 
     file.close();
@@ -135,22 +132,22 @@ constexpr std::string DizManager::removeNewlines(std::string s)
     return s;
 }
 
-std::string DizManager::getAppName()
+std::string DizManager::getAppName() const
 {
     return appName;
 }
 
-std::string DizManager::getAppFile()
+std::string DizManager::getAppFile() const
 {
     return appFile;
 }
 
-std::string DizManager::getVersion()
+std::string DizManager::getVersion() const
 {
     return version;
 }
 
-std::vector<DizPlatform> DizManager::getPlatforms()
+std::vector<DizPlatform> DizManager::getPlatforms() const
 {
     return platforms;
 }

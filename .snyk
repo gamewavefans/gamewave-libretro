@@ -1,0 +1,9 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.25.0
+ignore: {}
+patch: {}
+exclude:
+  global:
+    - deps/**:
+        reason: external dependency
+        created: 2024-04-16T16:28:55.780Z

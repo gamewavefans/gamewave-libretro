@@ -69,7 +69,7 @@ unsigned int retro_get_region(void)
 
 void retro_get_system_info(struct retro_system_info *info)
 {
-    memset(info, 0, sizeof(*info));
+    *info = {0};
     // TODO parametrize these is possible
     info->library_name = "emuwave";
     info->library_version = "0.1";
@@ -80,7 +80,7 @@ void retro_get_system_info(struct retro_system_info *info)
 // TODO
 void retro_get_system_av_info(struct retro_system_av_info *info)
 {
-    memset(info, 0, sizeof(*info));
+    *info = {0};
     info->geometry.base_width = 720;
     info->geometry.base_height = 480;
     info->geometry.max_width = 720;
@@ -169,10 +169,10 @@ void retro_run(void)
 
 // Load a cartridge
 // TODO
-bool retro_load_game(const struct retro_game_info *info)
+bool retro_load_game(const struct retro_game_info *game)
 {
-    log_cb(RETRO_LOG_DEBUG, "trying to load %s as a game\n", info->path);
-    return gamewave->loadGame(info->path);
+    log_cb(RETRO_LOG_DEBUG, "trying to load %s as a game\n", game->path);
+    return gamewave->loadGame(game->path);
 }
 
 void retro_unload_game(void)
