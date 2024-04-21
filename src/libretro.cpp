@@ -5,7 +5,6 @@
 #include <cstdlib>
 #include <memory>
 #include <array>
-#include <random>
 
 #include "gamewave.h"
 
@@ -69,27 +68,25 @@ unsigned int retro_get_region(void)
 
 void retro_get_system_info(struct retro_system_info *info)
 {
-    *info = {0};
-    // TODO parametrize these is possible
-    info->library_name = "emuwave";
-    info->library_version = "0.1";
-    info->valid_extensions = "iso|diz";
-    info->need_fullpath = true;
+    *info = {
+        .library_name = "emuwave",
+        .library_version = "0.1",
+        .valid_extensions = "iso|diz",
+        .need_fullpath = true,
+        .block_extract = false};
 }
 
 // TODO
 void retro_get_system_av_info(struct retro_system_av_info *info)
 {
-    *info = {0};
-    info->geometry.base_width = 720;
-    info->geometry.base_height = 480;
-    info->geometry.max_width = 720;
-    info->geometry.max_height = 480;
-    info->geometry.aspect_ratio = 1.33F;
-
-    info->timing.fps = 60;
-    // movies are in 44100, sounds appear to be 22050
-    info->timing.sample_rate = 44100;
+    *info = {
+        .geometry = {
+            .base_width = 720,
+            .base_height = 480,
+            .max_width = 720,
+            .max_height = 480,
+            .aspect_ratio = 1.33F},
+        .timing = {.fps = 60, .sample_rate = 44100}};
 
     int pixelFormat = RETRO_PIXEL_FORMAT_XRGB8888;
     environ_cb(RETRO_ENVIRONMENT_SET_PIXEL_FORMAT, &pixelFormat);
@@ -130,7 +127,7 @@ void retro_init(void)
         {0, RETRO_DEVICE_JOYPAD, RETRO_DEVICE_INDEX_ANALOG_RIGHT, RETRO_DEVICE_INDEX_ANALOG_BUTTON, "Keypad 5"},
         {0, RETRO_DEVICE_JOYPAD, 0, RETRO_DEVICE_ID_JOYPAD_DOWN, "Keypad 0"},
 
-        {0},
+        {0, RETRO_DEVICE_NONE, 0, 0, nullptr},
     });
     environ_cb(RETRO_ENVIRONMENT_SET_INPUT_DESCRIPTORS, desc.data());
 }
@@ -144,10 +141,6 @@ void retro_reset(void)
 // each pixel is in RETRO_PIXEL_FORMAT_XRGB8888 format, X is ignored
 std::array<unsigned int, 720 * 480 * 3> framebuffer;
 
-std::random_device rd;
-std::default_random_engine mt(rd());
-std::uniform_real_distribution<double> distribution(0.0, 255.0);
-
 // TODO move it elsewhere
 unsigned int packPixel(uint8_t r, uint8_t g, uint8_t b)
 {
@@ -156,12 +149,6 @@ unsigned int packPixel(uint8_t r, uint8_t g, uint8_t b)
 
 void retro_run(void)
 {
-
-    for (auto &pixel : framebuffer)
-    {
-        auto rand = distribution(mt);
-        pixel = packPixel(rand, rand, rand);
-    }
     // refresh inputs
     input_poll_cb();
     video_cb(framebuffer.data(), 720, 480, sizeof(unsigned int) * 720);
