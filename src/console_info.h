@@ -1,31 +1,34 @@
+#pragma once
 
-
-// TODO move this info to its respective spaces
+// TODO: move this info to its respective spaces
 namespace info
 {
     namespace screen
     {
         static constexpr int WIDTH = 720;
+        // 540 for 4:3, but probably is 480 stretched to 4:3 proportions on output
         static constexpr int HEIGHT = 480;
 
         // static constexpr float RATIO = static_cast<float>(WIDTH) / static_cast<float>(HEIGHT);
 
         // the image is stored in 3:2 ratio, but the NTSC standard is 4:3 with non-square pixels
+        // TODO: check which one  is used internally
         static constexpr float DATA_RATIO = 3.0 / 2.0;
         static constexpr float RATIO = 4.0 / 3.0;
 
-        // movies use 29.97
+        // TODO: check, movies use 29.97
         static constexpr double REFRESH_RATE = 60.0;
 
     }
-    namespace memory
-    {
-        // TODO - how much memory is there?
-        static constexpr int SIZE = 0;
-    }
+    // namespace memory
+    // {
+    //     // TODO: how much memory is there? EEPROM & RAM
+    //     static constexpr int SIZE = 0;
+    // }
     namespace audio
     {
-        static constexpr double SAMPLE_RATE = 0;
+        // TODO: check if correct
+        static constexpr double SAMPLE_RATE = 44100;
     }
     // memory - 16MB RAM
     // stereo sound

@@ -11,10 +11,17 @@ meson setup build # add "-Dbuildtype=debug" for a debug build
 meson compile -C build
 ```
 
-# Testing core?
+# Running core
 
 ```bash
-/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=retroarch org.libretro.RetroArch -L /home/halamix2/repos/reverse/gamewave/gamewave-libretro/build/libgamewave_libretro.so "/home/halamix2/repos/reverse/gamewave/games/Click! (USA)/gamewave.diz"
+/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=retroarch org.libretro.RetroArch -L /home/halamix2/repos/reverse/gamewave/gamewave-libretro/build/gamewave_libretro.so "/home/halamix2/repos/reverse/gamewave/games/Click! (USA)/gamewave.diz"
+```
+
+# Debug
+
+```bash
+flatpak run --command=sh --devel org.libretro.RetroArch
+gdb -ex=run -args /app/bin/retroarch -L /home/halamix2/repos/reverse/gamewave/gamewave-libretro/build/gamewave_libretro.so "/home/halamix2/repos/reverse/gamewave/games/Click! (USA)/gamewave.diz"
 ```
 
 # Unit tests

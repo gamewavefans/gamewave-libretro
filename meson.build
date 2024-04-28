@@ -36,6 +36,7 @@ gamewave_libretro = both_libraries(
   'src/diz_manager.cpp',
   'src/zlua/zmath.cpp',
   'src/zlua/bit.cpp',
+  'src/helpers.cpp',
   include_directories: [dep_gamewave_libretro, dep_libretro_common],
   version: meson.project_version(),
   soversion: meson.project_version(),

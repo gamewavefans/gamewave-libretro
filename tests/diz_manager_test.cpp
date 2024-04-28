@@ -5,7 +5,7 @@
 TEST(DizTest, TestLoadFile)
 {
     auto dm = DizManager();
-    // TODO make path not so sensitive to build changes
+    // TODO: make path not so sensitive to build changes
     auto success = dm.readFile("../tests/data/test.diz");
     EXPECT_TRUE(success);
 }
