@@ -23,15 +23,17 @@ namespace info
     // namespace memory
     // {
     //     // TODO: how much memory is there? EEPROM & RAM
+    //     // memory - 16MiB RAM ?
+    //     static constexpr int SIZE = 0;
+    // }
+    // namespace eeprom {
+    //     // 2MB NOR Flash RAM ???
     //     static constexpr int SIZE = 0;
     // }
     namespace audio
     {
         // TODO: check if correct
         static constexpr double SAMPLE_RATE = 44100;
+        static constexpr int CHANNELS = 2;
     }
-    // memory - 16MB RAM
-    // stereo sound
-    // 2MB NOR Flash RAM ???
-
 }

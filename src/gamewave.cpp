@@ -92,6 +92,13 @@ std::function<void(lua_State *L, lua_Debug *ar)> Gamewave::getHook()
     // return hook;
 }
 
+/**
+ * @brief dumpLuaStack reads Lua error stack and returns it as a string
+ *
+ *
+ * @param L Lua machine
+ * @return A stacktrace string
+ */
 std::string Gamewave::dumpLuaStack(lua_State *L)
 {
     std::string buffer = {};
@@ -111,12 +118,16 @@ std::string Gamewave::dumpLuaStack(lua_State *L)
             buffer += std::format("{}", (lua_toboolean(L, i) ? "true" : "false"));
             break;
         case LUA_TNIL:
-            buffer += std::format("{}", "nil");
+            buffer += "nil";
             break;
         default:
             buffer += std::format("{}", lua_topointer(L, i));
             break;
+            // TODO: consider LUA_TLIGHTUSERDATA, TTABLE, TFUNCTION, TUSERDATA
+            // would need to be custom though, do we really need that?
         }
+
+        // add newline, except on the last one
         if (i != top)
         {
             buffer += '\n';

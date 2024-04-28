@@ -200,10 +200,12 @@ Non-standard libraries:
     - `loc` might be place where to load files from (DVD, HDD etc.)
   - `Unload(userdata i)`
   - `bool Lookup(userdata i, str s)`
-- `exp_int` - there are mentions of INT port whatever it is
-  - `int Configure(int i)`
+- `exp_int` - unused(?); there are mentions of INT port whatever it is
+  - `int Configure(bool i)`
   - `int Close()`
   - `int Test()`
+    - returns 1 if exp int is set
+    - return 0 otherwise-ish?
 - `bit`
   - `int bnot(int i)` - not
   - `int band(int i, ...)` - and
