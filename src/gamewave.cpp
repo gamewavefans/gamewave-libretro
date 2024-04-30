@@ -198,22 +198,12 @@ std::string Gamewave::dumpLuaStack()
 
 void Gamewave::luaFunction()
 {
-    log_cb(RETRO_LOG_DEBUG, "running lua butecode\n======\n\n");
-    auto status = lua_pcall(L, 0, -1, 0);
-
-    printf("\n======\npcall status %d\n", status);
-    int err = lua_gettop(L);
-    printf("\n======\nlua end error %d\n", err);
+    auto err = lua_pcall(L, 0, -1, 0);
     if (err != 0)
     {
         // TODO: watch for core fails, set core running to 0?
-        log_cb(RETRO_LOG_ERROR, "Error %d during execution\n", err);
-
-        // flood framebuffer with pink to show fatal error
-        // TODOD: think of a better way to show this
-        this->framebuffer.fill(helpers::packPixel(255, 0, 255));
-
         auto stacktrace = dumpLuaStack();
+        log_cb(RETRO_LOG_ERROR, "Error %d during execution: %s\n", err, stacktrace.c_str());
 
         char mes[128];
         // TODO: stacktrace here
@@ -225,7 +215,6 @@ void Gamewave::luaFunction()
         // TODO check RETRO_ENVIRONMENT_GET_MESSAGE_INTERFACE_VERSION
         env_cb(RETRO_ENVIRONMENT_SET_MESSAGE_EXT, &mess);
 
-        // log_cb("stacktrace TODO:\n");
         env_cb(RETRO_ENVIRONMENT_SHUTDOWN, nullptr);
     }
 }
