@@ -102,7 +102,6 @@ bool Gamewave::loadGame(const char *inputPath)
     {
         auto zbcFile = ZBC(bytecodePath);
         auto [gameBytecode, size] = zbcFile.getUncompressed();
-        log_cb(RETRO_LOG_ERROR, "Got funky %d bytes of code: %s\n", size, gameBytecode + 1);
         auto status = luaL_loadbuffer(L, gameBytecode, size, filename);
         // setup Lua
         auto hook = getHook();
