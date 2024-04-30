@@ -37,7 +37,6 @@ bool ZBC::isCompressed(char *buffer)
 {
     std::array<char, 4> packedHeader{'\x1b', 'Z', 'C', 'S'};
     std::array<char, 4> header = {};
-    // memcpy(header, buffer, 4);
     std::copy(buffer, buffer + 4, header.data());
     return header == packedHeader;
 }
@@ -46,8 +45,8 @@ std::pair<char *, uint> ZBC::decompress(char *buffer)
 {
     uint32_t uncompressedSize = {0};
     uint32_t compressedSize = {0};
-    memcpy(&uncompressedSize, buffer + 0x8, sizeof(compressedSize));
-    memcpy(&compressedSize, buffer + 0xC, sizeof(compressedSize));
+    std::copy(buffer + 0x8, buffer + 0xC, reinterpret_cast<char *>(&uncompressedSize));
+    std::copy(buffer + 0xC, buffer + 0x10, reinterpret_cast<char *>(&compressedSize));
 
     return helpers::zlibInflate(buffer + 0x10, compressedSize, uncompressedSize);
 }

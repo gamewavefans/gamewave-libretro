@@ -6,8 +6,6 @@
 #include <fstream>
 #include <stdexcept>
 
-#include <cstring>
-
 #include <zlib.h>
 
 #include "src/helpers.h"
