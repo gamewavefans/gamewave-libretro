@@ -18,7 +18,7 @@ namespace helpers
 
     std::pair<char *, uint> zlibInflate(char *compressedData, uint compressedSize, uint uncompressedSize)
     {
-        auto uncompressedData = new char[uncompressedSize];
+        auto *uncompressedData = new char[uncompressedSize];
 
         // TODO: move zlib to a helper function, this will be used in many places
         z_stream strm = {};

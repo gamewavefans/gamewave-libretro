@@ -95,7 +95,7 @@ bool Gamewave::loadGame(const char *inputPath)
     }
 
     fs::path bytecodePath = path.parent_path() / diz.getSafeAppFile();
-    auto filename = bytecodePath.stem().c_str();
+    auto *filename = bytecodePath.stem().c_str();
     // decompress and load the bytecode
     log_cb(RETRO_LOG_DEBUG, "trying to load %s as a game\n", bytecodePath.c_str());
     try

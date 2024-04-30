@@ -9,7 +9,7 @@ ZBC::ZBC(std::string filename)
     }
     f.seekg(0, std::ios::end);
     size = f.tellg();
-    auto buffer = new char[size];
+    auto *buffer = new char[size];
     f.seekg(0);
     f.read(buffer, size);
     f.close();
