@@ -10,6 +10,8 @@
 
 #include <zlib.h>
 
+#include "src/helpers.h"
+
 // TODO: this can be done way better, for nw this is a quick and dirty implementation, a bare minimum to get the core working
 // TODO: error handling
 class ZBC
