@@ -167,7 +167,6 @@ void retro_run(void)
 bool retro_load_game(const struct retro_game_info *game)
 {
     gamewave.reset(new Gamewave(env_cb, log_cb));
-    log_cb(RETRO_LOG_DEBUG, "trying to load %s as a game\n", game->path);
     log_cb(RETRO_LOG_DEBUG, "meta: %s\n", game->meta);
 
     return gamewave->loadGame(game->path);

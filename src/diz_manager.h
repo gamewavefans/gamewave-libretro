@@ -4,6 +4,8 @@
 #include <fstream>
 #include <vector>
 
+#include "helpers.h"
+
 /** DizSection is a helper enum for parsing Diz files,
  * we store info about the currently processed section of the file
  */
@@ -33,6 +35,8 @@ private:
     std::string version;
 };
 
+// TODO: shouldn't this be DizLoader to keep one naming convention?
+// TODO: throw exception instead of this wonky readFile function
 /**DizManager loads Diz file and stores its values inside
  */
 class DizManager
@@ -53,6 +57,12 @@ public:
     /** retrieves appfile field, containing path to a .zbc file
      */
     std::string getAppFile() const;
+
+    /**
+     * @brief retrieves lowercase appFile field, without leading slash
+     * @return lowercase appFile field, without leading slash
+     */
+    std::string getSafeAppFile() const;
 
     /** retrieves version field, if it exists
      */

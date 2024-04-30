@@ -142,6 +142,16 @@ std::string DizManager::getAppFile() const
     return appFile;
 }
 
+std::string DizManager::getSafeAppFile() const
+{
+    std::string safeAppFile = appFile;
+    if (safeAppFile[0] == '/')
+    {
+        safeAppFile.erase(0, 1);
+    }
+    return helpers::toLower(safeAppFile);
+}
+
 std::string DizManager::getVersion() const
 {
     return version;

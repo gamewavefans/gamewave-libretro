@@ -4,6 +4,7 @@
 #include <array>
 #include <functional>
 #include <format>
+#include <filesystem>
 
 #include "deps/libretro-common/include/libretro.h"
 #include "diz_manager.h"
@@ -18,7 +19,10 @@ extern "C"
 #include "lualib.h"
 }
 
-typedef std::function<void(lua_State *L, lua_Debug *ar)> hookFunc;
+#include "src/zbc.h"
+
+namespace fs = std::filesystem;
+using hookFunc = std::function<void(lua_State *L, lua_Debug *ar)>;
 
 class Gamewave
 {
@@ -49,7 +53,9 @@ private:
     retro_environment_t env_cb;
 
     // TODO: mov lua stuff to another class maybe?
-    std::string dumpLuaStack(lua_State *L);
+    lua_State *L;
+    void loadLuaLibraries();
+    std::string dumpLuaStack();
     std::jmp_buf place;
 
     std::thread luaThread;

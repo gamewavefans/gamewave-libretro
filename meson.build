@@ -28,6 +28,8 @@ dep_libretro_common = include_directories('deps/libretro-common')
 #     dependency('libswresample')
 #     ]
 
+dependencies = [lua_gamewave, dependency('zlib')]
+
 # we're building both dynamic library for use in RetroArch, as well as static one to use in tests, as dynamic only exports retro_* functions
 gamewave_libretro = both_libraries(
   'gamewave_libretro',
@@ -37,10 +39,11 @@ gamewave_libretro = both_libraries(
   'src/zlua/zmath.cpp',
   'src/zlua/bit.cpp',
   'src/helpers.cpp',
+  'src/zbc.cpp',
   include_directories: [dep_gamewave_libretro, dep_libretro_common],
   version: meson.project_version(),
   soversion: meson.project_version(),
-  dependencies: [lua_gamewave],
+  dependencies: dependencies,
   link_args: ['-Wl,--version-script,' + meson.current_source_dir() + '/link.T'],
   # prevents library getting named libgamewave_libretro
   name_prefix: '',
