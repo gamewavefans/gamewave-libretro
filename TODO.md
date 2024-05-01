@@ -68,9 +68,9 @@ Non-standard libraries:
     - sets debug state 0/1
     - `PrintRaw` works only if `enabled` is non-zero
 - `pointer`
-  - `lightUserData CreateUserData(int size)`
+  - `lightUserData *CreateUserData(int size)`
     - probably allocs `size` bytes of space
-  - `DestroyUserData(userData u)`
+  - `DestroyUserData(userData u)` - empty func????
   - `str ToString(userData u)`
   - `str ToStringRange(userData u, int min, int max)`
     - returns `[min, max)` bytes of data
@@ -95,7 +95,7 @@ Non-standard libraries:
   - `int EnableRemotes()`
   - `int DisableRemotes()`
   - `SetMode(int mode)`
-    - known modes: 0 - 4
+    - known modes: 0 - 4, defaults to 0
   - `int GetMode()`
   - `SetQueueSize(int size)`
   - `SetRandomKeysTable(int []t)`
@@ -104,7 +104,7 @@ Non-standard libraries:
   - `int Load(int i, str s)`
   - `Unload(int i)`
   - `Show(int i)`
-  - `ShowPredefined(int i)`
+  - `ShowPredefined(int i)` - i==0 is different than the rest
   - `Clear()`
 - `engine`
   - `ZMM_SetLeakDebugMode(int enabled)`
@@ -196,7 +196,7 @@ Non-standard libraries:
   - `int GetFileSize(int i)`
   - `int CloseFile(int i)`
 - `dict`
-  - `Load(int loc, str s)`
+  - `lightUserData Load(int loc, str s)`
     - `loc` might be place where to load files from (DVD, HDD etc.)
   - `Unload(userdata i)`
   - `bool Lookup(userdata i, str s)`
