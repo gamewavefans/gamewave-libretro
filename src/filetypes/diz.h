@@ -39,7 +39,7 @@ private:
 // TODO: throw exception instead of this wonky readFile function
 /**DizManager loads Diz file and stores its values inside
  */
-class DizManager
+class DIZ
 {
 public:
     /**

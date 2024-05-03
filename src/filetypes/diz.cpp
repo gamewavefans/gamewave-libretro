@@ -1,4 +1,4 @@
-#include "diz_manager.h"
+#include "diz.h"
 
 DizPlatform::DizPlatform(const std::string &board, const std::string &engine, const std::string &version)
 {
@@ -22,7 +22,7 @@ std::string DizPlatform::getVersion() const
     return version;
 }
 
-bool DizManager::readFile(const std::string &filePath)
+bool DIZ::readFile(const std::string &filePath)
 {
     this->filePath = filePath;
     std::ifstream file(filePath);
@@ -38,11 +38,11 @@ bool DizManager::readFile(const std::string &filePath)
     std::string currentPlatformVersion = {};
     while (getline(file, line))
     {
-        if (DizManager::removeNewlines(line) == "[global]")
+        if (DIZ::removeNewlines(line) == "[global]")
         {
             currentSection = DizSection::GLOBAL;
         }
-        else if (DizManager::removeNewlines(line) == "[platform]")
+        else if (DIZ::removeNewlines(line) == "[platform]")
         {
             currentSection = DizSection::PLATFORM;
             // skip bumping for the first found correct platform
@@ -58,7 +58,7 @@ bool DizManager::readFile(const std::string &filePath)
             if (found != std::string::npos)
             {
                 constexpr int lastpos = std::string("appname=").length();
-                this->appName = DizManager::removeNewlines(line.substr(found + lastpos));
+                this->appName = DIZ::removeNewlines(line.substr(found + lastpos));
                 continue;
             }
 
@@ -66,7 +66,7 @@ bool DizManager::readFile(const std::string &filePath)
             if (found != std::string::npos)
             {
                 constexpr int lastpos = std::string("appfile=").length();
-                this->appFile = DizManager::removeNewlines(line.substr(found + lastpos));
+                this->appFile = DIZ::removeNewlines(line.substr(found + lastpos));
                 continue;
             }
 
@@ -74,7 +74,7 @@ bool DizManager::readFile(const std::string &filePath)
             if (found != std::string::npos)
             {
                 constexpr int lastpos = std::string("version=").length();
-                this->version = DizManager::removeNewlines(line.substr(found + lastpos));
+                this->version = DIZ::removeNewlines(line.substr(found + lastpos));
                 continue;
             }
         }
@@ -84,7 +84,7 @@ bool DizManager::readFile(const std::string &filePath)
             if (found != std::string::npos)
             {
                 constexpr int lastpos = std::string("board=").length();
-                currentPlatformBoard = DizManager::removeNewlines(line.substr(found + lastpos));
+                currentPlatformBoard = DIZ::removeNewlines(line.substr(found + lastpos));
                 continue;
             }
 
@@ -92,7 +92,7 @@ bool DizManager::readFile(const std::string &filePath)
             if (found != std::string::npos)
             {
                 constexpr int lastpos = std::string("engine=").length();
-                currentPlatformEngine = DizManager::removeNewlines(line.substr(found + lastpos));
+                currentPlatformEngine = DIZ::removeNewlines(line.substr(found + lastpos));
                 continue;
             }
 
@@ -100,7 +100,7 @@ bool DizManager::readFile(const std::string &filePath)
             if (found != std::string::npos)
             {
                 constexpr int lastpos = std::string("version=").length();
-                currentPlatformVersion = DizManager::removeNewlines(line.substr(found + lastpos));
+                currentPlatformVersion = DIZ::removeNewlines(line.substr(found + lastpos));
                 continue;
             }
         }
@@ -116,7 +116,7 @@ bool DizManager::readFile(const std::string &filePath)
     return true;
 }
 
-constexpr std::string DizManager::removeNewlines(std::string s)
+constexpr std::string DIZ::removeNewlines(std::string s)
 {
     std::size_t found = s.find('\r');
     if (found != std::string::npos)
@@ -132,17 +132,17 @@ constexpr std::string DizManager::removeNewlines(std::string s)
     return s;
 }
 
-std::string DizManager::getAppName() const
+std::string DIZ::getAppName() const
 {
     return appName;
 }
 
-std::string DizManager::getAppFile() const
+std::string DIZ::getAppFile() const
 {
     return appFile;
 }
 
-std::string DizManager::getSafeAppFile() const
+std::string DIZ::getSafeAppFile() const
 {
     std::string safeAppFile = appFile;
     if (safeAppFile[0] == '/')
@@ -152,12 +152,12 @@ std::string DizManager::getSafeAppFile() const
     return helpers::toLower(safeAppFile);
 }
 
-std::string DizManager::getVersion() const
+std::string DIZ::getVersion() const
 {
     return version;
 }
 
-std::vector<DizPlatform> DizManager::getPlatforms() const
+std::vector<DizPlatform> DIZ::getPlatforms() const
 {
     return platforms;
 }

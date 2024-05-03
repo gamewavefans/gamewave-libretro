@@ -79,7 +79,7 @@ bool Gamewave::loadGame(const char *inputPath)
     log_cb(RETRO_LOG_DEBUG, "Input name: %s\n", inputPath);
     log_cb(RETRO_LOG_DEBUG, "Base dir: %s\n", path.parent_path().c_str());
 
-    DizManager diz = DizManager();
+    DIZ diz = DIZ();
     bool dizLoaded = diz.readFile(inputPath);
     if (!dizLoaded)
     {

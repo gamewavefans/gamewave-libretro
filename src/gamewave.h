@@ -6,11 +6,6 @@
 #include <format>
 #include <filesystem>
 
-#include "deps/libretro-common/include/libretro.h"
-#include "diz_manager.h"
-#include "console_info.h"
-#include "helpers.h"
-
 #include <csetjmp>
 extern "C"
 {
@@ -19,7 +14,12 @@ extern "C"
 #include "lualib.h"
 }
 
-#include "src/zbc.h"
+#include "deps/libretro-common/include/libretro.h"
+
+#include "filetypes/diz.h"
+#include "filetypes/zbc.h"
+#include "console_info.h"
+#include "helpers.h"
 
 namespace fs = std::filesystem;
 using hookFunc = std::function<void(lua_State *L, lua_Debug *ar)>;
