@@ -1,0 +1,214 @@
+Non-standard libraries:
+
+- `gl`
+  - `SelectOSDMode(str mode)`
+    - possible modes: `844`, `655`, `4444`, `4633`
+  - `BeginScene()`
+  - `EndScene()`
+  - `int CreateOverlayFromTexture(int i)`
+  - `FreeOverlay(int i)`
+  - `int LoadTexture(int i, str s)`
+  - `FreeTexture(int i)`
+  - `AddTextureToOverlay(int i, int j)`
+  - `RemoveTextureFromOverlay(int i, int j)`
+  - `SetTextureActiveFrame(int i, int j)`
+  - `SetClipInfo(int i, int j, int k, int l, int m)`
+  - `SetParameters(int i, int j, int k, int l, int m)`
+    - identical to the `SetClipInfo()`
+  - `SetZorder(int i, int j)`
+  - `SetVisibility(int i, int j)`
+  - `SetPosition(int i, int j, int k)`
+  - `int GetZorder(int i)`
+  - `int GetVisibility(int i)`
+  - `int, int GetPosition(int i)`
+  - `int, int GetSize(int i)`
+  - `ClearOSD()`
+  - `Show(int i)`
+  - `int HasAnimations(int i)`
+  - `DeleteAllAnimations(int i)`
+  - `AddPositionAnimation(int i, int j, int k, int l, int m, int n, int o)`
+  - `AddVisibilityAnimation(int i, int j, int k)`
+  - `AddParabolaAnimation(int i, int j, int k, int l, int m, int n, int o, int p, int q, int r, int s, int t)`
+  - `AddBlinkingAnimation(int i, int j, int k, int l, int m)`
+  - `AddAlphaAnimation(int i, int j, int k, int l)`
+  - `CreateTextureAnimation(int i, int j, int [][]t)`
+    - TODO tables, I don't know if I read this correctly
+    - expects a table of 11 tables of 3 ints, `int [11][3]`
+  - `int CreateEmptyTexture(int i, int j, str s)`
+  - `BlitOverlay(int i, int j, int k, int l)`
+    - with optional `int m` and `int n`
+  - `BlitOverlayWithCR(int i, int j, int k, int l)`
+    - with optional `int m`, `int n`, mnopqrstuvw
+  - `SetTextureAlphaLevel(int i, int j)`
+- `rm` - Resource Manager
+  - `int OpenResource(str s)`
+  - `CloseResource(int i)`
+  - `lightUserData, int LoadFile(int i, str s)`
+  - `UnloadFile(int i, userData u)`
+- `time`
+  - `int GetRealTime()`
+  - `Sleep(int i)`
+- `log`
+  - `Log(int level, str message)`
+    - prints somewhere if level is lower or equal to currently set log level
+  - `SetLevel(int level)`
+    - sets logging level
+    - LOG_NONE - 0
+    - LOG_CRITICAL - 1
+    - LOG_IMPORTANT - 2
+    - LOG_NORMAL - 3
+    - LOG_VERBOSE - 4
+    - LOG_DEBUG - 5
+  - `SetModule(int i, int j)`
+  - `PrintRaw(str message)`
+    - prints somewhere if debug state is enabled
+  - `PrintLine(str message)`
+    - prints somewhere
+  - `DebugSetState(int enabled)`
+    - sets debug state 0/1
+    - `PrintRaw` works only if `enabled` is non-zero
+- `pointer`
+  - `lightUserData *CreateUserData(int size)`
+    - probably allocates `size` bytes of space
+  - `DestroyUserData(userData u)` - empty func????
+  - `str ToString(userData u)`
+  - `str ToStringRange(userData u, int min, int max)`
+    - returns `[min, max)` bytes of data
+  - `lightUserData FromString(str s)`
+  - `int GetIndex(userData u, int i)`
+  - `int GetU32MSB(userData u, int i)`
+  - `SetU32MSB(userData u, int i, int j)`
+  - `int GetU32LSB(userData u, int i)`
+  - `SetU32LSB(userData u, int i, int j)`
+  - `str ByteToAscii(int i)`
+  - `int AsciiToByte(str s)`
+- `zmath` - there is no standard `math` library included
+  - `int Mod(int i, int j)`
+  - `int Rand(int min, int max)`
+    - gets random int that `min <= n <= max` - TODO check if this is correct
+  - `RandSeed(int i)`
+    - initializes Rand, seed can be set to time.GetRealTime()
+- `input`
+  - `ClearKeyQueue()`
+  - `int, int, int GetKey()`
+  - `int, int, int WaitForKey()`
+  - `int EnableRemotes()`
+  - `int DisableRemotes()`
+  - `SetMode(int mode)`
+    - known modes: 0 - 4, defaults to 0
+  - `int GetMode()`
+  - `SetQueueSize(int size)`
+  - `SetRandomKeysTable(int []t)`
+    - I have no idea if I read this function correctly, or how many elements in a table are expected (4?)
+- `iframe`
+  - `int Load(int i, str s)`
+  - `Unload(int i)`
+  - `Show(int i)`
+  - `ShowPredefined(int i)` - i==0 is different than the rest
+  - `Clear()`
+- `engine`
+  - `ZMM_SetLeakDebugMode(int enabled)`
+  - `ZMM_SetCheckPoint()`
+  - `ZMM_VerifyCheckPoint()`
+  - `int ZMM_GetTotalAllocMemory()`
+  - `int ZMM_GetTotalFreeMemory()`
+  - `int ZMM_GetMaxFreeMemory()`
+  - `DR_SetEnable(int i)`
+  - `DR_SetDebug(int i)`
+  - `DR_SetAbsoluteCapping(int i, int j, int k)`
+  - `DR_ClearPairCappings(int i, int j, int k)`
+  - `DR_AddPairCapping()`
+  - `OpenTray()`
+  - `CloseTray()`
+  - `EjectTray()`
+    - exactly the same as `OpenTray()`
+  - `int GetTrayState()`
+  - `SoftwareReset()`
+  - `WaitForDisk()`
+  - `int GetNumOverlays()`
+  - `int GetNumTextures()`
+  - `str Version()`
+    - returns something like `1.01.3.xxxxxx`
+  - `SetLineTraceMode(bool enabled)`
+  - `int GetLineTraceMode()`
+- `text`
+  - `int RenderSimple(int i, str s)`
+  - `Render(str s, int i, int j, int k)`
+    - possible 10 optional args????
+  - `Remove(int i)`
+  - `int GetOverlayId(int i)`
+- `font`
+  - `int Load(int loc, str s)`
+  - `Free(int i)`
+  - `int GetBuiltinFontID()`
+    - the builtin font is Arial
+- `movie`
+  - `int Load(str s)`
+  - `SetLoop(int i)`
+  - `Play()`
+  - `Stop(int i)`
+  - `Resume()`
+  - `int GetState()`
+    - returns 0 if it's still playing, needs to be checked in a loop
+- `audio`
+  - `int Load(int i, str s)`
+  - `Unload(int i)`
+  - `Play(int i , int j)`
+- `spi`
+  - `int Init()`
+  - `int Open()`
+  - `int Close()`
+  - `int Write(userData u, int i,int j)`
+  - `lightUserData Read(int i, int j)`
+- `uart`
+  - `str RxD()`
+  - `int TxD(str s, int i)`
+  - `int Open()`
+    - returns 1, does nothing
+  - `int Close()`
+    - returns 1, does nothing
+- `eeprom`
+  - `bool SaveGameToNewSlot(int i, int j, str s, str s2, userData u)`
+  - `str, str, bool GetSaveNameByID(int i,)`
+  - `lightUserData, bool LoadSaveByID(int i)`
+  - `UnloadData(userData u)`
+  - `bool SaveGameToExistingSlot(int i, userData u)`
+  - `int, bool EnumerateGameSavesByID(int i)`
+    - returns `number_of_slots, 0`
+  - `int, bool EnumerateGameSavesByName(str s)`
+    - returns `number_of_slots, 0`
+  - `Format()`
+  - `CorruptFlash()`
+  - `int CheckFlashIntegrity()`
+- `zfile`
+  - `int OpenFile(str s)`
+    - optional `int i` and `int loc` arguments, defaults to 0
+    - `i` is checked against 0 and -1 (and else)
+    - `loc` is only used when i is not 0 or -1, `loc` has to be ` loc >= 0`, see `dict.Load()`
+    - returns -1 on error
+  - `lightUserData ReadBytes(int i, int j, int k)`
+    - can return `nil`
+  - `int, str ReadLine(int i)`
+    - returned int is set to `0` if string is returned
+    - returned int is set to `1` if `nil` is returned
+  - `int SetHeadPosition(int i, int j)`
+  - `int GetFileSize(int i)`
+  - `int CloseFile(int i)`
+- `dict`
+  - `lightUserData Load(int loc, str s)`
+    - `loc` might be place where to load files from (DVD, HDD etc.)
+  - `Unload(userdata i)`
+  - `bool Lookup(userdata i, str s)`
+- `exp_int` - there are mentions of INT port whatever it is
+  - `int Configure(bool i)`
+  - `int Close()` - returns 0 if closed, 1 if exp_int wasn't configured
+  - `int Test()`
+- `bit`
+  - `int bnot(int i)` - not
+  - `int band(int i, ...)` - and
+  - `int bor(int i, ...)` - or
+  - `int bxor(int i, ...)` - xor
+  - `int lshift(int i, int j)`
+  - `int rshift(int i, int j)` - looks like unsigned right shift
+  - `int arshift(int i, int j)` - looks like signed right shift
+  - `int mod(int i, int j)`
