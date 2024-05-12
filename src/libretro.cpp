@@ -6,7 +6,7 @@
 #include <memory>
 #include <array>
 
-#include "deps/libretro-common/include/libretro.h"
+#include "libretro-common/include/libretro.h"
 #include "gamewave.h"
 #include "global.h"
 #include "console_info.h"

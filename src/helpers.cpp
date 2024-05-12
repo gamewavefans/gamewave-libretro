@@ -24,8 +24,8 @@ namespace helpers
         z_stream strm = {};
         strm.avail_in = compressedSize;
         strm.avail_out = uncompressedSize;
-        strm.next_in = (Bytef *)compressedData;
-        strm.next_out = (Bytef *)uncompressedData;
+        strm.next_in = reinterpret_cast<Bytef *>(compressedData);
+        strm.next_out = reinterpret_cast<Bytef *>(uncompressedData);
 
         strm.zalloc = Z_NULL;
         strm.zfree = Z_NULL;
