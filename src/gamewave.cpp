@@ -1,12 +1,8 @@
 #include "gamewave.h"
 
-extern "C"
-{
-#include "zlua_mock/gl.h"
-}
-
 #include "zlua/bit.h"
 #include "zlua/engine.h"
+#include "zlua/gl.h"
 #include "zlua/log.h"
 #include "zlua/time.h"
 #include "zlua/zmath.h"
@@ -40,7 +36,7 @@ void Gamewave::loadLuaLibraries()
         {"string", luaopen_string},
         {"debug", luaopen_debug},
         {"engine", zlua::Engine::zlua_engine_loadlibrary},
-        {"gl", luaopen_gl},
+        {"gl", zlua::GL::zlua_gl_loadlibrary},
         // {"audio", luaopen_audio},
         {"bit", zlua::Bit::zlua_bit_loadlibrary},
         // {"eeprom", luaopen_eeprom},
