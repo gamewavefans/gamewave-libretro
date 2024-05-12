@@ -51,16 +51,8 @@ Non-standard libraries:
   - `int GetRealTime()`
   - `Sleep(int i)`
 - `log`
-  - `Log(int level, str message)`
-    - prints somewhere if level is lower or equal to currently set log level
-  - `SetLevel(int level)`
-    - sets logging level
-    - LOG_NONE - 0
-    - LOG_CRITICAL - 1
-    - LOG_IMPORTANT - 2
-    - LOG_NORMAL - 3
-    - LOG_VERBOSE - 4
-    - LOG_DEBUG - 5
+  - ~~`Log(int level, str message)`~~
+  - ~~`SetLevel(int level)`~~
   - `SetModule(int i, int j)`
   - `PrintRaw(str message)`
     - prints somewhere if debug state is enabled
@@ -84,12 +76,6 @@ Non-standard libraries:
   - `SetU32LSB(userData u, int i, int j)`
   - `str ByteToAscii(int i)`
   - `int AsciiToByte(str s)`
-- `zmath` - there is no standard `math` library included
-  - `int Mod(int i, int j)`
-  - `int Rand(int min, int max)`
-    - gets random int that `min <= n <= max` - TODO check if this is correct
-  - `RandSeed(int i)`
-    - initializes Rand, seed can be set to time.GetRealTime()
 - `input`
   - `ClearKeyQueue()`
   - `int, int, int GetKey()`
@@ -206,14 +192,15 @@ Non-standard libraries:
   - `int Close()` - returns 0 if closed, 1 if exp_int wasn't configured
   - `int Test()`
 - `bit`
-  - `int bnot(int i)` - not
-  - `int band(int i, ...)` - and
-  - `int bor(int i, ...)` - or
-  - `int bxor(int i, ...)` - xor
-  - `int lshift(int i, int j)`
-  - `int rshift(int i, int j)` - looks like unsigned right shift
+  - ~~`int bnot(int i)`~~
+  - ~~`int band(int i, ...)`~~
+  - ~~`int bor(int i, ...)`~~
+  - ~~`int bxor(int i, ...)`~~
+  - ~~`int lshift(int i, int j)`~~
+  - ~~`int rshift(int i, int j)`~~
   - `int arshift(int i, int j)` - looks like signed right shift
-  - `int mod(int i, int j)`
+  - ~~`int mod(int i, int j)`~~
+- ~~`zmath`~~
 
 # Inplement file formats:
 

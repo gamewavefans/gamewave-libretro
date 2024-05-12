@@ -6,8 +6,9 @@ extern "C"
 #include "zlua_mock/gl.h"
 }
 
-#include "zlua/common.h"
+#include "zlua/bit.h"
 #include "zlua/log.h"
+#include "zlua/zmath.h"
 
 Gamewave::Gamewave(const retro_environment_t env_cb, const retro_log_printf_t log_cb)
 {
@@ -40,7 +41,7 @@ void Gamewave::loadLuaLibraries()
         {"engine", luaopen_engine},
         {"gl", luaopen_gl},
         // {"audio", luaopen_audio},
-        // {"bit", luaopen_bit},
+        {"bit", zlua::Bit::zlua_bit_loadlibrary},
         // {"eeprom", luaopen_eeprom},
         {"zlua", zlua::Log::zlua_log_loadlibrary},
         // {"exp_int", luaopen_exp_int},
@@ -57,7 +58,7 @@ void Gamewave::loadLuaLibraries()
         // {"time", luaopen_time},
         // {"uart", luaopen_uart},
         // {"zfile", luaopen_zfile},
-        // {"zmath", luaopen_zmath},
+        {"zmath", zlua::ZMath::zlua_zmath_loadlibrary},
         {nullptr, nullptr}};
 
     // load C-style libraries
