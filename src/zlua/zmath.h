@@ -1,13 +1,8 @@
 #pragma once
 
-#include <cstdlib>
-
-extern "C"
+namespace zlua
 {
-#include "subprojects/lua_gamewave/include/lauxlib.h"
-#include "subprojects/lua_gamewave/include/lua.h"
-#include "subprojects/lua_gamewave/include/lualib.h"
+    class ZMath
+    {
+    };
 }
-
-extern int luaopen_zmath(lua_State *L);
-extern int zmath_mod(lua_State *L);

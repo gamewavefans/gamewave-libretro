@@ -8,18 +8,10 @@
 
 #include "deps/libretro-common/include/libretro.h"
 #include "gamewave.h"
-#include <src/console_info.h>
+#include "global.h"
+#include "console_info.h"
 
 std::unique_ptr<Gamewave> gamewave;
-
-// TODO Callbacks
-static retro_log_printf_t log_cb;
-static retro_video_refresh_t video_cb;
-static retro_input_poll_t input_poll_cb;
-static retro_input_state_t input_state_cb;
-static retro_environment_t env_cb;
-// static retro_audio_sample_t audio_cb;
-static retro_audio_sample_batch_t audio_batch_cb;
 
 // set libretro environment
 void retro_set_environment(retro_environment_t cb)

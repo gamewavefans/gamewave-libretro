@@ -1,5 +1,14 @@
 #include "gamewave.h"
 
+extern "C"
+{
+#include "zlua_mock/engine.h"
+#include "zlua_mock/gl.h"
+}
+
+#include "zlua/common.h"
+#include "zlua/log.h"
+
 Gamewave::Gamewave(const retro_environment_t env_cb, const retro_log_printf_t log_cb)
 {
     this->setEnvironmentCallback(env_cb);
@@ -17,19 +26,45 @@ Gamewave::Gamewave(const retro_environment_t env_cb, const retro_log_printf_t lo
     // this->videoThread = std::thread(&Gamewave::videoFunction, this);
 }
 
+// TODO: rework loading libraries
+// I've spent to much  time trying to use zluaClosure::target<int(lua_State *)>() with no luck
 void Gamewave::loadLuaLibraries()
 {
+    // load libraries
+    // typedef int (*lua_CFunction) (lua_State *L);
     static const luaL_reg lualibs[] = {
         {"base", luaopen_base},
         {"table", luaopen_table},
-        //{"io", luaopen_io},
         {"string", luaopen_string},
-        //{"math", luaopen_math},
         {"debug", luaopen_debug},
+        {"engine", luaopen_engine},
+        {"gl", luaopen_gl},
+        // {"audio", luaopen_audio},
+        // {"bit", luaopen_bit},
+        // {"eeprom", luaopen_eeprom},
+        {"zlua", zlua::Log::zlua_log_loadlibrary},
+        // {"exp_int", luaopen_exp_int},
+        // {"font", luaopen_font},
+        // {"gl", luaopen_gl},
+        // {"iframe", luaopen_iframe},
+        // {"input", luaopen_input},
+        // {"log", *zlogre},
+        // {"movie", nullptr},
+        // {"pointer", luaopen_pointer},
+        // {"rm", luaopen_rm},
+        // {"spi", luaopen_spi},
+        // {"text", luaopen_text},
+        // {"time", luaopen_time},
+        // {"uart", luaopen_uart},
+        // {"zfile", luaopen_zfile},
+        // {"zmath", luaopen_zmath},
         {nullptr, nullptr}};
+
+    // load C-style libraries
     const luaL_reg *lib = lualibs;
     for (; lib->func; lib++)
     {
+        log_cb(RETRO_LOG_DEBUG, "Loading %s\n", lib->name);
         lib->func(L);     /* open library */
         lua_settop(L, 0); /* discard any results */
     }
@@ -105,6 +140,7 @@ bool Gamewave::loadGame(const char *inputPath)
         auto status = luaL_loadbuffer(L, gameBytecode, size, filename);
         // setup Lua
         auto hook = getHook();
+        // TOOD: won't work, closures with capturing group cannot be converted that way
         lua_sethook(L, hook.target<void(lua_State *, lua_Debug *)>(), LUA_MASKCOUNT, 100);
         // skipcq: CXX-W2015
         if (status != 0 || setjmp(place) != 0)

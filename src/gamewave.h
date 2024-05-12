@@ -9,12 +9,12 @@
 #include <csetjmp>
 extern "C"
 {
-#include "lauxlib.h"
-#include "lua.h"
-#include "lualib.h"
+#include "lua_gamewave/include/lauxlib.h"
+#include "lua_gamewave/include/lua.h"
+#include "lua_gamewave/include/lualib.h"
 }
 
-#include "deps/libretro-common/include/libretro.h"
+#include "libretro-common/include/libretro.h"
 
 #include "filetypes/diz.h"
 #include "filetypes/zbc.h"

@@ -1,13 +1,8 @@
 #pragma once
 
-#include <cstdio>
-#include <cstring>
-
-extern "C"
+namespace zlua
 {
-#include "subprojects/lua_gamewave/include/lauxlib.h"
-#include "subprojects/lua_gamewave/include/lua.h"
-#include "subprojects/lua_gamewave/include/lualib.h"
+    class Bit
+    {
+    };
 }
-
-extern int luaopen_bit(lua_State *L);

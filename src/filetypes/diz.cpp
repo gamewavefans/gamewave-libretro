@@ -1,5 +1,7 @@
 #include "diz.h"
 
+// TODO: use namespaces filetypes::diz::diz()
+// TODO: move constructor?
 DizPlatform::DizPlatform(const std::string &board, const std::string &engine, const std::string &version)
 {
     this->board = board;
