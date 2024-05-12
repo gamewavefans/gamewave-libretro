@@ -47,9 +47,7 @@ Non-standard libraries:
   - `CloseResource(int i)`
   - `lightUserData, int LoadFile(int i, str s)`
   - `UnloadFile(int i, userData u)`
-- `time`
-  - `int GetRealTime()`
-  - `Sleep(int i)`
+- ~~`time`~~
 - `log`
   - ~~`Log(int level, str message)`~~
   - ~~`SetLevel(int level)`~~

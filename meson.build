@@ -58,7 +58,7 @@ gamewave_libretro = both_libraries(
   # 'src/zlua/rm.cpp',
   # 'src/zlua/spi.cpp',
   # 'src/zlua/text.cpp',
-  # 'src/zlua/time.cpp',
+  'src/zlua/time.cpp',
   # 'src/zlua/uart.cpp',
   # 'src/zlua/zfile.cpp',
   'src/zlua/zmath.cpp',

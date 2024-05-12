@@ -8,6 +8,7 @@ extern "C"
 
 #include "zlua/bit.h"
 #include "zlua/log.h"
+#include "zlua/time.h"
 #include "zlua/zmath.h"
 
 Gamewave::Gamewave(const retro_environment_t env_cb, const retro_log_printf_t log_cb)
@@ -55,7 +56,7 @@ void Gamewave::loadLuaLibraries()
         // {"rm", luaopen_rm},
         // {"spi", luaopen_spi},
         // {"text", luaopen_text},
-        // {"time", luaopen_time},
+        {"time", zlua::Time::zlua_time_loadlibrary},
         // {"uart", luaopen_uart},
         // {"zfile", luaopen_zfile},
         {"zmath", zlua::ZMath::zlua_zmath_loadlibrary},

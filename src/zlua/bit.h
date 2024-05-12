@@ -15,17 +15,6 @@ extern "C"
 #include "global.h"
 #include "zlua/zmath.h"
 
-/*
-- `bit`
-  - `int bnot(int i)` - not
-  - `int band(int i, ...)` - and
-  - `int bor(int i, ...)` - or
-  - `int bxor(int i, ...)` - xor
-  - `int lshift(int i, int j)`
-  - `int rshift(int i, int j)` - looks like unsigned right shift
-  - `int arshift(int i, int j)` - looks like signed right shift
-  - `int mod(int i, int j)`
-*/
 namespace zlua::Bit
 {
     extern "C"
