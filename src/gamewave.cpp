@@ -2,11 +2,11 @@
 
 extern "C"
 {
-#include "zlua_mock/engine.h"
 #include "zlua_mock/gl.h"
 }
 
 #include "zlua/bit.h"
+#include "zlua/engine.h"
 #include "zlua/log.h"
 #include "zlua/time.h"
 #include "zlua/zmath.h"
@@ -39,7 +39,7 @@ void Gamewave::loadLuaLibraries()
         {"table", luaopen_table},
         {"string", luaopen_string},
         {"debug", luaopen_debug},
-        {"engine", luaopen_engine},
+        {"engine", zlua::Engine::zlua_engine_loadlibrary},
         {"gl", luaopen_gl},
         // {"audio", luaopen_audio},
         {"bit", zlua::Bit::zlua_bit_loadlibrary},
