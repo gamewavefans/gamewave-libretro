@@ -211,6 +211,8 @@ Non-standard libraries:
 
 # Misc:
 
+- base path
+
 - [ ] rule of five
 - [ ] Gamewave class will be anightmare, refactor it later when the core starts working and you have a sense of direction
 - [ ] think if you should replace `var = {}` with `var {}`

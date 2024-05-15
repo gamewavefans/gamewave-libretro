@@ -3,14 +3,14 @@
 namespace zlua::IFrame
 {
     int currentID = {0};
-    std::vector<void *> iFrames = {};
+    std::vector<iFrame *> iFrames = {};
 
     static const luaL_reg zlua_iframe_lib[] = {
         // {"Clear", zlua_iframe_clear},
         // {"Load", zlua_iframe_load},
         // {"Show", zlua_iframe_show},
         // {"ShowPredefined", zlua_iframe_show_predefined},
-        // {"Unload", zlua_iframe_unload},
+        {"Unload", zlua_iframe_unload},
         {nullptr, nullptr}};
 
     int zlua_iframe_loadlibrary(lua_State *L)
@@ -21,10 +21,13 @@ namespace zlua::IFrame
 
     int zlua_iframe_load(lua_State *L)
     {
-        int loc = luaL_checkint(L, 1);
+        int i = luaL_checkint(L, 1);
         std::string s = luaL_checkstring(L, 2);
 
-        log_cb(RETRO_LOG_DEBUG, "\tcalled iframe.Load(%d, %s) -> %d\n", loc, s.c_str(), currentID);
+        auto location = zlua::RM::getResourcePath(i);
+        auto targetPath = *location / s;
+
+        log_cb(RETRO_LOG_DEBUG, "\tcalled iframe.Load(%d(\"%s\"), \"%s\") -> %d\n", i, location->c_str(), s.c_str(), currentID);
         lua_pushnumber(L, (lua_Number)currentID);
         ++currentID;
         return 1;
@@ -56,5 +59,17 @@ namespace zlua::IFrame
     {
         log_cb(RETRO_LOG_DEBUG, "\tcalled iframe.Clear()\n");
         return 0;
+    }
+
+    int getIframeID()
+    {
+        return currentID;
+    }
+
+    int getIframeCount()
+    {
+        // return number of non-nullptr elements
+        return std::count_if(iFrames.begin(), iFrames.end(), [](iFrame *iFrame)
+                             { return iFrame != nullptr; });
     }
 }
