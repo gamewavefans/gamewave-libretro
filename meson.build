@@ -48,7 +48,7 @@ gamewave_libretro = both_libraries(
   # 'src/zlua/exp_int.cpp',
   # 'src/zlua/font.cpp',
   'src/zlua/gl.cpp',
-  # 'src/zlua/iframe.cpp',
+  'src/zlua/iframe.cpp',
   # 'src/zlua/input.cpp',
   'src/zlua/log.cpp',
   # 'src/zlua/movie.cpp',

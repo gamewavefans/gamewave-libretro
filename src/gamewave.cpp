@@ -3,6 +3,7 @@
 #include "zlua/bit.h"
 #include "zlua/engine.h"
 #include "zlua/gl.h"
+#include "zlua/iframe.h"
 #include "zlua/log.h"
 #include "zlua/rm.h"
 #include "zlua/time.h"
@@ -45,7 +46,7 @@ void Gamewave::loadLuaLibraries()
         // {"exp_int", luaopen_exp_int},
         // {"font", luaopen_font},
         // {"gl", luaopen_gl},
-        // {"iframe", luaopen_iframe},
+        {"iframe", zlua::IFrame::zlua_iframe_loadlibrary},
         // {"input", luaopen_input},
         // {"log", *zlogre},
         // {"movie", nullptr},

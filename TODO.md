@@ -207,6 +207,7 @@ Non-standard libraries:
 - [x] zbc - unpack
 - [ ] zbm
 - [ ] zwf
+- [ ] FIMG (for default font & iframes)
 
 # Misc:
 
