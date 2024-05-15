@@ -43,8 +43,8 @@ Non-standard libraries:
     - with optional `int m`, `int n`, mnopqrstuvw
   - `SetTextureAlphaLevel(int i, int j)`
 - `rm` - Resource Manager
-  - `int OpenResource(str s)`
-  - `CloseResource(int i)`
+  - ~~`int OpenResource(str s)`~~
+  - ~~`CloseResource(int i)`~~
   - `lightUserData, int LoadFile(int i, str s)`
   - `UnloadFile(int i, userData u)`
 - ~~`time`~~
@@ -212,3 +212,4 @@ Non-standard libraries:
 
 - [ ] rule of five
 - [ ] Gamewave class will be anightmare, refactor it later when the core starts working and you have a sense of direction
+- [ ] think if you should replace `var = {}` with `var {}`

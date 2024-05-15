@@ -4,6 +4,7 @@
 #include "zlua/engine.h"
 #include "zlua/gl.h"
 #include "zlua/log.h"
+#include "zlua/rm.h"
 #include "zlua/time.h"
 #include "zlua/zmath.h"
 
@@ -49,7 +50,7 @@ void Gamewave::loadLuaLibraries()
         // {"log", *zlogre},
         // {"movie", nullptr},
         // {"pointer", luaopen_pointer},
-        // {"rm", luaopen_rm},
+        {"rm", zlua::RM::zlua_rm_loadlibrary},
         // {"spi", luaopen_spi},
         // {"text", luaopen_text},
         {"time", zlua::Time::zlua_time_loadlibrary},
