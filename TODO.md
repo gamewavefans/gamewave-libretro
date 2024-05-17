@@ -88,7 +88,7 @@ Non-standard libraries:
     - I have no idea if I read this function correctly, or how many elements in a table are expected (4?)
 - `iframe`
   - `int Load(int i, str s)`
-  - `Unload(int i)`
+  - ~~`Unload(int i)`~~
   - `Show(int i)`
   - `ShowPredefined(int i)` - i==0 is different than the rest
   - `Clear()`
@@ -211,7 +211,7 @@ Non-standard libraries:
 
 # Misc:
 
-- base path
+- base path, global or should RM handle it? (RM should)
 
 - [ ] rule of five
 - [ ] Gamewave class will be anightmare, refactor it later when the core starts working and you have a sense of direction

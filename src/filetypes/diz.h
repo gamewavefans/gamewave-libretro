@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <fstream>
+#include <map>
 #include <vector>
 
 #include "helpers.h"
@@ -24,13 +25,18 @@ class DizPlatform
 public:
     /** Stores information about a platform from a .diz file
      */
-    DizPlatform(const std::string &board, const std::string &engine, const std::string &version);
-    std::string getBoard() const;
+    DizPlatform(const std::string &engine, const std::string &version);
+
+    /**
+     * @brief retrieves lowercase engine field, without leading slash
+     * @return lowercase engine field, without leading slash
+     */
+    std::string getSafeEngine() const;
+
     std::string getEngine() const;
     std::string getVersion() const;
 
 private:
-    std::string board;
     std::string engine;
     std::string version;
 };
@@ -70,7 +76,7 @@ public:
 
     /** returns vector of platforms
      */
-    std::vector<DizPlatform> getPlatforms() const;
+    std::map<std::string, DizPlatform> getPlatforms() const;
 
 private:
     static constexpr std::string removeNewlines(std::string s);
@@ -78,5 +84,5 @@ private:
     std::string appName = {};
     std::string appFile = {};
     std::string version = {};
-    std::vector<DizPlatform> platforms{};
+    std::map<std::string, DizPlatform> platforms{};
 };

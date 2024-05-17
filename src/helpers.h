@@ -1,5 +1,8 @@
 #pragma once
 
+#include <bit>
+#include <fstream>
+
 #include <utility>
 #include <cstdint>
 #include <cstring>
@@ -18,4 +21,8 @@ namespace helpers
     std::string toLower(std::string s);
 
     std::pair<char *, uint> zlibInflate(char *compressedData, uint compressedSize, uint uncompressedSize);
+
+    // template <typename T>
+    // TODO: template tis? so far we only need uint32_t
+    uint32_t readBigEndianInt(std::ifstream &file);
 }

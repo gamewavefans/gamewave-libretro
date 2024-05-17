@@ -1,6 +1,8 @@
 #pragma once
 
+#include <chrono>
 #include <thread>
+
 #include <array>
 #include <functional>
 #include <format>
@@ -17,9 +19,12 @@ extern "C"
 #include "libretro-common/include/libretro.h"
 
 #include "filetypes/diz.h"
+#include "filetypes/fimg.h"
 #include "filetypes/zbc.h"
 #include "console_info.h"
 #include "helpers.h"
+
+using namespace std::chrono_literals;
 
 namespace fs = std::filesystem;
 using hookFunc = std::function<void(lua_State *L, lua_Debug *ar)>;
@@ -51,6 +56,8 @@ private:
 
     retro_log_printf_t log_cb;
     retro_environment_t env_cb;
+
+    FIMG *fimg;
 
     // TODO: mov lua stuff to another class maybe?
     lua_State *L;

@@ -55,4 +55,17 @@ namespace helpers
 
         return std::make_pair(uncompressedData, uncompressedSize);
     }
+
+    uint32_t readBigEndianInt(std::ifstream &file)
+    {
+        uint32_t number{};
+        file.read(reinterpret_cast<char *>(&number), sizeof(number));
+
+        if (std::endian::native == std::endian::little)
+        {
+            number = std::byteswap(number);
+        }
+
+        return number;
+    }
 }

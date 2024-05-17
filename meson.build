@@ -15,20 +15,22 @@ dep_deps = include_directories('deps')
 dep_subprojects = include_directories('subprojects')
 
 # zlib, Threads::Threads
-# ffmpeg::avcodec
 # ffmpeg::avformat
+# ffmpeg::avcodec
 # ffmpeg::avutil
 # ffmpeg::swresample
 # ffmpeg::swscale
 # libyuv
-# dependencies = [
-#     dependency('libavformat', version: '>= 57.33'),
-#     dependency('libavcodec', version: '>= 57.37'),
-#     dependency('libavutil'),
-#     dependency('libswresample')
-#     ]
 
-dependencies = [lua_gamewave, dependency('zlib')]
+dependencies = [
+  lua_gamewave,
+  dependency('zlib'),
+  dependency('libavformat', version: '>= 57.33'),
+  dependency('libavcodec', version: '>= 57.37'),
+  dependency('libavutil'),
+  dependency('libswresample'),
+  dependency('libswscale'),
+]
 
 # we're building both dynamic library for use in RetroArch, as well as static one to use in tests, as dynamic only exports retro_* functions
 gamewave_libretro = both_libraries(
@@ -38,6 +40,7 @@ gamewave_libretro = both_libraries(
   'src/gamewave.cpp',
   'src/helpers.cpp',
   'src/filetypes/diz.cpp',
+  'src/filetypes/fimg.cpp',
   'src/filetypes/zbc.cpp',
   'src/filetypes/zbm.cpp',
   'src/filetypes/zwf.cpp',

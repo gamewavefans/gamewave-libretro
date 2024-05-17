@@ -2,16 +2,20 @@
 
 // TODO: use namespaces filetypes::diz::diz()
 // TODO: move constructor?
-DizPlatform::DizPlatform(const std::string &board, const std::string &engine, const std::string &version)
+DizPlatform::DizPlatform(const std::string &engine, const std::string &version)
 {
-    this->board = board;
     this->engine = engine;
     this->version = version;
 }
 
-std::string DizPlatform::getBoard() const
+std::string DizPlatform::getSafeEngine() const
 {
-    return board;
+    auto safeEngine = engine;
+    if (safeEngine[0] == '/')
+    {
+        safeEngine.erase(0, 1);
+    }
+    return helpers::toLower(safeEngine);
 }
 
 std::string DizPlatform::getEngine() const
@@ -50,8 +54,8 @@ bool DIZ::readFile(const std::string &filePath)
             // skip bumping for the first found correct platform
             if (currentPlatformBoard != "" && currentPlatformEngine != "")
             {
-                DizPlatform platform = DizPlatform(currentPlatformBoard, currentPlatformEngine, currentPlatformVersion);
-                this->platforms.push_back(platform);
+                DizPlatform platform = DizPlatform(currentPlatformEngine, currentPlatformVersion);
+                this->platforms.insert({currentPlatformBoard, platform});
             }
         }
         else if (currentSection == DizSection::GLOBAL)
@@ -110,8 +114,8 @@ bool DIZ::readFile(const std::string &filePath)
     // TODO separate function for this?
     if (currentPlatformBoard != "" && currentPlatformEngine != "")
     {
-        DizPlatform platform = DizPlatform(currentPlatformBoard, currentPlatformEngine, currentPlatformVersion);
-        this->platforms.push_back(platform);
+        DizPlatform platform = DizPlatform(currentPlatformEngine, currentPlatformVersion);
+        this->platforms.insert({currentPlatformBoard, platform});
     }
 
     file.close();
@@ -159,7 +163,7 @@ std::string DIZ::getVersion() const
     return version;
 }
 
-std::vector<DizPlatform> DIZ::getPlatforms() const
+std::map<std::string, DizPlatform> DIZ::getPlatforms() const
 {
     return platforms;
 }

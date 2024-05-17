@@ -128,6 +128,12 @@ bool Gamewave::loadGame(const char *inputPath)
     {
         log_cb(RETRO_LOG_DEBUG, "[DIZ] Game version: %s\n", diz.getVersion().c_str());
     }
+    auto fimgPath = path.parent_path() / diz.getPlatforms().at("3").getSafeEngine();
+    log_cb(RETRO_LOG_DEBUG, "trying to load %s as a FIMG\n", fimgPath.c_str());
+    fimg = new FIMG(fimgPath);
+
+    // TODO: (re)move after testing
+    auto launch = fimg->getFile("launching.m2v");
 
     fs::path bytecodePath = path.parent_path() / diz.getSafeAppFile();
     const auto *filename = bytecodePath.stem().c_str();
@@ -233,6 +239,9 @@ std::string Gamewave::dumpLuaStack()
 
 void Gamewave::luaFunction()
 {
+    // TODO: remove this after FIM testing
+    std::this_thread::sleep_for(2s);
+
     auto err = lua_pcall(L, 0, -1, 0);
     if (err != 0)
     {
