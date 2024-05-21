@@ -1,14 +1,5 @@
 #include "gamewave.h"
 
-#include "zlua/bit.h"
-#include "zlua/engine.h"
-#include "zlua/gl.h"
-#include "zlua/iframe.h"
-#include "zlua/log.h"
-#include "zlua/rm.h"
-#include "zlua/time.h"
-#include "zlua/zmath.h"
-
 Gamewave::Gamewave(const retro_environment_t env_cb, const retro_log_printf_t log_cb)
 {
     this->setEnvironmentCallback(env_cb);
@@ -132,8 +123,11 @@ bool Gamewave::loadGame(const char *inputPath)
     log_cb(RETRO_LOG_DEBUG, "trying to load %s as a FIMG\n", fimgPath.c_str());
     fimg = new FIMG(fimgPath);
 
-    // TODO: (re)move after testing
+    // display launching iframe
     auto launch = fimg->getFile("launching.m2v");
+    auto movie = IFrame(launch);
+    auto image = movie.getFramebuffer();
+    std::memcpy(framebuffer.begin(), image->data(), image->size());
 
     fs::path bytecodePath = path.parent_path() / diz.getSafeAppFile();
     const auto *filename = bytecodePath.stem().c_str();

@@ -13,6 +13,8 @@ lua_gamewave = lua_gamewave_proj.get_variable('lua_dep')
 dep_gamewave_libretro = include_directories('src')
 dep_deps = include_directories('deps')
 dep_subprojects = include_directories('subprojects')
+# TODO: this is not Windwos compatible!
+dep_ffmpeg = include_directories('/usr/include/ffmpeg/')
 
 # zlib, Threads::Threads
 # ffmpeg::avformat
@@ -28,7 +30,7 @@ dependencies = [
   dependency('libavformat', version: '>= 57.33'),
   dependency('libavcodec', version: '>= 57.37'),
   dependency('libavutil'),
-  dependency('libswresample'),
+  # dependency('libswresample'),
   dependency('libswscale'),
 ]
 
@@ -39,6 +41,7 @@ gamewave_libretro = both_libraries(
   'src/libretro.cpp',
   'src/gamewave.cpp',
   'src/helpers.cpp',
+  'src/iframe.cpp',
   'src/filetypes/diz.cpp',
   'src/filetypes/fimg.cpp',
   'src/filetypes/zbc.cpp',
@@ -63,7 +66,7 @@ gamewave_libretro = both_libraries(
   # 'src/zlua/uart.cpp',
   # 'src/zlua/zfile.cpp',
   'src/zlua/zmath.cpp',
-  include_directories: [dep_gamewave_libretro, dep_deps, dep_subprojects],
+  include_directories: [dep_gamewave_libretro, dep_deps, dep_subprojects, dep_ffmpeg],
   version: meson.project_version(),
   soversion: meson.project_version(),
   dependencies: dependencies,

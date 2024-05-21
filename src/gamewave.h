@@ -9,6 +9,7 @@
 #include <filesystem>
 
 #include <csetjmp>
+
 extern "C"
 {
 #include "lua_gamewave/include/lauxlib.h"
@@ -18,11 +19,22 @@ extern "C"
 
 #include "libretro-common/include/libretro.h"
 
+#include "iframe.h"
+#include "console_info.h"
+#include "helpers.h"
+
 #include "filetypes/diz.h"
 #include "filetypes/fimg.h"
 #include "filetypes/zbc.h"
-#include "console_info.h"
-#include "helpers.h"
+
+#include "zlua/bit.h"
+#include "zlua/engine.h"
+#include "zlua/gl.h"
+#include "zlua/iframe.h"
+#include "zlua/log.h"
+#include "zlua/rm.h"
+#include "zlua/time.h"
+#include "zlua/zmath.h"
 
 using namespace std::chrono_literals;
 
