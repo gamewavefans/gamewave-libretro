@@ -7,7 +7,7 @@ namespace zlua::IFrame
 
     static const luaL_reg zlua_iframe_lib[] = {
         // {"Clear", zlua_iframe_clear},
-        // {"Load", zlua_iframe_load},
+        {"Load", zlua_iframe_load},
         // {"Show", zlua_iframe_show},
         // {"ShowPredefined", zlua_iframe_show_predefined},
         {"Unload", zlua_iframe_unload},
@@ -27,7 +27,7 @@ namespace zlua::IFrame
         auto location = zlua::RM::getResourcePath(i);
         auto targetPath = *location / s;
 
-        log_cb(RETRO_LOG_DEBUG, "\tcalled iframe.Load(%d(\"%s\"), \"%s\") -> %d\n", i, location->c_str(), s.c_str(), currentID);
+        log_cb(RETRO_LOG_DEBUG, "\tcalled iframe.Load(%d, \"%s\") (\"%s\")-> %d\n", i, s.c_str(), targetPath.c_str(), currentID);
         lua_pushnumber(L, (lua_Number)currentID);
         ++currentID;
         return 1;

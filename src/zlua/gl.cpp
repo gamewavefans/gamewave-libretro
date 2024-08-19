@@ -24,7 +24,7 @@ namespace zlua::GL
         // {"GetSize", gl_},
         // {"GetVisibility", gl_},
         // {"GetZorder", gl_},
-        // {"LoadTexture", gl_load_texture},
+        {"LoadTexture", zlua_gl_load_texture},
         // {"number HasAnimations", gl_},
         // {"RemoveTextureFromOverlay", gl_},
         {"SelectOSDMode", zlua_gl_select_osd_mode},
@@ -47,7 +47,23 @@ namespace zlua::GL
     int zlua_gl_select_osd_mode(lua_State *L)
     {
         const char *mode = luaL_checkstring(L, 1);
-        printf("\tcalled gl.SelectOSDMode(\"%s\") - UNIMPLEMENTED\n", mode);
+        log_cb(RETRO_LOG_DEBUG, "\tcalled gl.SelectOSDMode(\"%s\") - UNIMPLEMENTED\n", mode);
         return 0;
     }
+
+    int zlua_gl_load_texture(lua_State *L)
+    {
+        int i = luaL_checkint(L, 1);
+        std::string s = luaL_checkstring(L, 2);
+
+        auto location = zlua::RM::getResourcePath(i);
+        auto targetPath = *location / s;
+
+        int ret = 0;
+        log_cb(RETRO_LOG_DEBUG, "\tcalled gl.LoadTexture(%d, \"%s\") (\"%s\") -> %d - UNIMPLEMENTED\n", i, s.c_str(), targetPath.c_str(), ret);
+        // TODO
+        lua_pushnumber(L, (lua_Number)ret);
+        return 1;
+    }
+
 }

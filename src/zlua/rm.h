@@ -38,4 +38,6 @@ namespace zlua::RM
         // unused
         int zlua_rm_unload_file(lua_State *L);
     }
+
+    fs::path *getResourcePath(int i);
 }

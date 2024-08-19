@@ -1,5 +1,8 @@
 #pragma once
 
+#include <vector>
+#include <filesystem>
+
 #include "libretro-common/include/libretro.h"
 
 extern "C"
@@ -10,6 +13,8 @@ extern "C"
 }
 
 #include "global.h"
+
+#include "zlua/rm.h"
 /*
 - `gl`
   - `SelectOSDMode(str mode)`
@@ -63,7 +68,7 @@ namespace zlua::GL
         // int zlua_gl_end_scene(lua_State *L);
         // int zlua_gl_create_overlay_from_texture(lua_State *L);
         // int zlua_gl_free_overlay(lua_State *L);
-        // int zlua_gl_load_texture(lua_State *L);
+        int zlua_gl_load_texture(lua_State *L);
         // int zlua_gl_free_texture(lua_State *L);
         // int zlua_gl_add_texture_to_overlay(lua_State *L);
         // int zlua_gl_remove_texture_from_overlay(lua_State *L);
