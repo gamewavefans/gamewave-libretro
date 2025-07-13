@@ -33,6 +33,6 @@
 build/
 
 # downloaded meson subprojects
-subprojects
+subprojects/**/
 .vscode
 .vscode-ctags
