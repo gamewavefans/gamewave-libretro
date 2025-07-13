@@ -2,7 +2,7 @@ project(
   'gamewave-libretro',
   ['cpp', 'c'],
   version: '0.0.1',
-  default_options: ['warning_level=3', 'cpp_std=c++23'],
+  default_options: ['warning_level=3', 'cpp_std=c++26'],
 )
 # lib_versions = meson.project_version().split('.')
 
@@ -13,8 +13,6 @@ lua_gamewave = lua_gamewave_proj.get_variable('lua_dep')
 dep_gamewave_libretro = include_directories('src')
 dep_deps = include_directories('deps')
 dep_subprojects = include_directories('subprojects')
-# TODO: this is not Windwos compatible!
-dep_ffmpeg = include_directories('/usr/include/ffmpeg/')
 
 # zlib, Threads::Threads
 # ffmpeg::avformat
@@ -66,7 +64,7 @@ gamewave_libretro = both_libraries(
   # 'src/zlua/uart.cpp',
   # 'src/zlua/zfile.cpp',
   'src/zlua/zmath.cpp',
-  include_directories: [dep_gamewave_libretro, dep_deps, dep_subprojects, dep_ffmpeg],
+  include_directories: [dep_gamewave_libretro, dep_deps, dep_subprojects],
   version: meson.project_version(),
   soversion: meson.project_version(),
   dependencies: dependencies,
