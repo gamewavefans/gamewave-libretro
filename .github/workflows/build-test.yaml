@@ -19,7 +19,7 @@ jobs:
           cache: "pip"
       - name: install meson
         run: |
-          python -m pip install meson>=1.7.2 ninja
+          python -m pip install -r requirements.txt
       - name: Install ffmpeg
         uses: awalsh128/cache-apt-pkgs-action@v1
         with:
@@ -45,7 +45,7 @@ jobs:
           cache: "pip"
       - name: install meson
         run: |
-          python -m pip install meson>=1.7.2 ninja
+          python -m pip install -r requirements.txt
       - name: Install ffmpeg
         run: winget install "FFmpeg (Shared)" --disable-interactivity --accept-source-agreements
       - name: Build
