@@ -19,6 +19,8 @@ jobs:
       - name: install meson
         run: |
           python -m pip install meson>=1.7.2 ninja
+      - name: Install ffmpeg
+        run: sudo apt install -y ffmpeg libavcodec-dev libswscale-dev libavutil-dev libavformat-dev
       - name: Build
         run: |
           meson setup build
