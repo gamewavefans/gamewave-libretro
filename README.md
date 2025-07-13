@@ -11,7 +11,7 @@ meson setup build # add "-Dbuildtype=debug" for a debug build
 meson compile -C build
 ```
 
-# Running core
+## Running core
 
 ```bash
 /usr/bin/flatpak run --branch=stable --arch=x86_64 --command=retroarch org.libretro.RetroArch -L /home/halamix2/repos/reverse/gamewave/gamewave-libretro/build/gamewave_libretro.so "/home/halamix2/repos/reverse/gamewave/games/Click! (USA)/gamewave.diz"
@@ -23,25 +23,25 @@ Native;
 retroarch -L /home/halamix2/repos/reverse/gamewave/gamewave-libretro/build/gamewave_libretro.so "/home/halamix2/repos/reverse/gamewave/games/Click! (USA)/gamewave.diz"
 ```
 
-# Debug
+## Debug
 
 ```bash
 flatpak run --command=sh --devel org.libretro.RetroArch
 gdb -ex=run -args /app/bin/retroarch -L /home/halamix2/repos/reverse/gamewave/gamewave-libretro/build/gamewave_libretro.so "/home/halamix2/repos/reverse/gamewave/games/Click! (USA)/gamewave.diz"
 ```
 
-# Unit tests
+## Unit tests
 
 ```bash
 meson setup build # add "-Dbuildtype=debug" for a debug build
 meson test -C build
 ```
 
-# What's working
+## What's working
 
 - loading .diz files
 
-# What's not working
+## What's not working
 
 - everything
 - font
@@ -51,7 +51,7 @@ meson test -C build
 - input
 - saves
 
-# Dependencies:
+## Dependencies:
 
 - libretro (included with git submodule)
 - libpthread
@@ -60,7 +60,14 @@ meson test -C build
 - ffmpeg
 <!-- - libyuv - included by Hunter -->
 
-# Possible future deps:
+## Possible future deps
 
 - SDL2
 - libcdio
+
+## Flatpak integration
+
+To use the core in the flatpak version of theretroarch:
+
+- link the .so file to `.var/app/org.libretro.RetroArch/config/retroarch/cores/`
+- link the .info file to `/var/lib/flatpak/app/org.libretro.RetroArch/current/active/files/share/libretro/info/`
