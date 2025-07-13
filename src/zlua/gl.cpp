@@ -2,6 +2,7 @@
 
 namespace zlua::GL
 {
+    int overlay_number = {0};
     static const luaL_reg zlua_gl_lib[] = {
         // {"AddAlphaAnimation", gl_},
         // {"AddBlinkingAnimation", gl_},
@@ -9,12 +10,12 @@ namespace zlua::GL
         // {"AddPositionAnimation", gl_},
         // {"AddTextureToOverlay", gl_add_texture_to_overlay},
         // {"AddVisibilityAnimation", gl_},
-        // {"BeginScene", gl_begin_scene},
+        {"BeginScene", zlua_gl_begin_scene},
         // {"BlitOverlay", gl_},
         // {"BlitOverlayWithCR", gl_},
         // {"ClearOSD", gl_},
         // {"CreateEmptyTexture", gl_},
-        // {"CreateOverlayFromTexture", gl_create_overlay_from_texture},
+        {"CreateOverlayFromTexture", zlua_gl_create_overlay_from_texture},
         // {"CreateTextureAnimation", gl_create_texture_animation},
         // {"DeleteAllAnimations", gl_},
         // {"EndScene", gl_end_scene},
@@ -51,6 +52,21 @@ namespace zlua::GL
         return 0;
     }
 
+    int zlua_gl_begin_scene(lua_State *L)
+    {
+        log_cb(RETRO_LOG_DEBUG, "\tcalled gl.BeginScene() - UNIMPLEMENTED\n");
+        return 0;
+    }
+
+    int zlua_gl_create_overlay_from_texture(lua_State *L)
+    {
+        int i = luaL_checkint(L, 1);
+        int ret = overlay_number++;
+        log_cb(RETRO_LOG_DEBUG, "\tcalled gl.CreateOverlayFromTexture(%d) -> %d - UNIMPLEMENTED\n", i, ret);
+        lua_pushnumber(L, (lua_Number)ret);
+        return 1;
+    }
+
     int zlua_gl_load_texture(lua_State *L)
     {
         int i = luaL_checkint(L, 1);
@@ -65,5 +81,4 @@ namespace zlua::GL
         lua_pushnumber(L, (lua_Number)ret);
         return 1;
     }
-
 }

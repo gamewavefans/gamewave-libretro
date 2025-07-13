@@ -67,6 +67,7 @@ void retro_get_system_info(struct retro_system_info *info)
 {
     *info = {
         .library_name = "emuwave",
+        // TODO: don't hardcode version here
         .library_version = "0.1",
         // TODO: expand this to .iso files later with "iso|diz"
         .valid_extensions = "diz",

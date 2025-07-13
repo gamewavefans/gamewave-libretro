@@ -7,9 +7,9 @@
 
 extern "C"
 {
-#include "lua_gamewave/include/lauxlib.h"
-#include "lua_gamewave/include/lua.h"
-#include "lua_gamewave/include/lualib.h"
+#include "lauxlib.h"
+#include "lua.h"
+#include "lualib.h"
 }
 
 #include "global.h"
@@ -25,29 +25,29 @@ extern "C"
 */
 namespace zlua::IFrame
 {
-    namespace fs = std::filesystem;
+  namespace fs = std::filesystem;
 
-    // TODO: what type should iFrame be? We could basically store images here
-    using iFrame = void;
-    extern std::vector<iFrame *> iFrames;
-    extern int currentID;
+  // TODO: what type should iFrame be? We could basically store images here
+  using iFrame = void;
+  extern std::vector<iFrame *> iFrames;
+  extern int currentID;
 
-    extern "C"
-    {
-        int zlua_iframe_loadlibrary(lua_State *L);
+  extern "C"
+  {
+    int zlua_iframe_loadlibrary(lua_State *L);
 
-        int zlua_iframe_load(lua_State *L);
+    int zlua_iframe_load(lua_State *L);
 
-        int zlua_iframe_unload(lua_State *L);
+    int zlua_iframe_unload(lua_State *L);
 
-        int zlua_iframe_show(lua_State *L);
+    int zlua_iframe_show(lua_State *L);
 
-        int zlua_iframe_show_predefined(lua_State *L);
+    int zlua_iframe_show_predefined(lua_State *L);
 
-        int zlua_iframe_clear(lua_State *L);
-    }
+    int zlua_iframe_clear(lua_State *L);
+  }
 
-    int getIframeID();
+  int getIframeID();
 
-    int getIframeCount();
+  int getIframeCount();
 }

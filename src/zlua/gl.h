@@ -7,9 +7,9 @@
 
 extern "C"
 {
-#include "lua_gamewave/include/lauxlib.h"
-#include "lua_gamewave/include/lua.h"
-#include "lua_gamewave/include/lualib.h"
+#include "lauxlib.h"
+#include "lua.h"
+#include "lualib.h"
 }
 
 #include "global.h"
@@ -59,42 +59,42 @@ extern "C"
 */
 namespace zlua::GL
 {
-    extern "C"
-    {
-        int zlua_gl_loadlibrary(lua_State *L);
+  extern "C"
+  {
+    int zlua_gl_loadlibrary(lua_State *L);
 
-        int zlua_gl_select_osd_mode(lua_State *L);
-        // int zlua_gl_begin_scene(lua_State *L);
-        // int zlua_gl_end_scene(lua_State *L);
-        // int zlua_gl_create_overlay_from_texture(lua_State *L);
-        // int zlua_gl_free_overlay(lua_State *L);
-        int zlua_gl_load_texture(lua_State *L);
-        // int zlua_gl_free_texture(lua_State *L);
-        // int zlua_gl_add_texture_to_overlay(lua_State *L);
-        // int zlua_gl_remove_texture_from_overlay(lua_State *L);
-        // int zlua_gl_set_texture_active_frame(lua_State *L);
-        // int zlua_gl_set_clip_info(lua_State *L);
-        // int zlua_gl_set_parameters(lua_State *L);
-        // int zlua_gl_set_zorder(lua_State *L);
-        // int zlua_gl_set_visibility(lua_State *L);
-        // int zlua_gl_set_position(lua_State *L);
-        // int zlua_gl_get_zorder(lua_State *L);
-        // int zlua_gl_get_visibility(lua_State *L);
-        // int zlua_gl_get_position(lua_State *L);
-        // int zlua_gl_get_size(lua_State *L);
-        // int zlua_gl_clear_osd(lua_State *L);
-        // int zlua_gl_show(lua_State *L);
-        // int zlua_gl_has_animations(lua_State *L);
-        // int zlua_gl_delete_all_animations(lua_State *L);
-        // int zlua_gl_add_position_animation(lua_State *L);
-        // int zlua_gl_add_visibility_animation(lua_State *L);
-        // int zlua_gl_add_parabola_animation(lua_State *L);
-        // int zlua_gl_add_blinking_animation(lua_State *L);
-        // int zlua_gl_add_alpha_animation(lua_State *L);
-        // int zlua_gl_create_texture_animation(lua_State *L);
-        // int zlua_gl_create_empty_texture(lua_State *L);
-        // int zlua_gl_blit_overlay(lua_State *L);
-        // int zlua_gl_blit_overlay_with_cr(lua_State *L);
-        // int zlua_gl_set_texture_alpha_level(lua_State *L);
-    }
+    int zlua_gl_select_osd_mode(lua_State *L);
+    int zlua_gl_begin_scene(lua_State *L);
+    // int zlua_gl_end_scene(lua_State *L);
+    int zlua_gl_create_overlay_from_texture(lua_State *L);
+    // int zlua_gl_free_overlay(lua_State *L);
+    int zlua_gl_load_texture(lua_State *L);
+    // int zlua_gl_free_texture(lua_State *L);
+    // int zlua_gl_add_texture_to_overlay(lua_State *L);
+    // int zlua_gl_remove_texture_from_overlay(lua_State *L);
+    // int zlua_gl_set_texture_active_frame(lua_State *L);
+    // int zlua_gl_set_clip_info(lua_State *L);
+    // int zlua_gl_set_parameters(lua_State *L);
+    // int zlua_gl_set_zorder(lua_State *L);
+    // int zlua_gl_set_visibility(lua_State *L);
+    // int zlua_gl_set_position(lua_State *L);
+    // int zlua_gl_get_zorder(lua_State *L);
+    // int zlua_gl_get_visibility(lua_State *L);
+    // int zlua_gl_get_position(lua_State *L);
+    // int zlua_gl_get_size(lua_State *L);
+    // int zlua_gl_clear_osd(lua_State *L);
+    // int zlua_gl_show(lua_State *L);
+    // int zlua_gl_has_animations(lua_State *L);
+    // int zlua_gl_delete_all_animations(lua_State *L);
+    // int zlua_gl_add_position_animation(lua_State *L);
+    // int zlua_gl_add_visibility_animation(lua_State *L);
+    // int zlua_gl_add_parabola_animation(lua_State *L);
+    // int zlua_gl_add_blinking_animation(lua_State *L);
+    // int zlua_gl_add_alpha_animation(lua_State *L);
+    // int zlua_gl_create_texture_animation(lua_State *L);
+    // int zlua_gl_create_empty_texture(lua_State *L);
+    // int zlua_gl_blit_overlay(lua_State *L);
+    // int zlua_gl_blit_overlay_with_cr(lua_State *L);
+    // int zlua_gl_set_texture_alpha_level(lua_State *L);
+  }
 }

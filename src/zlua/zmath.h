@@ -6,9 +6,9 @@
 
 extern "C"
 {
-#include "lua_gamewave/include/lauxlib.h"
-#include "lua_gamewave/include/lua.h"
-#include "lua_gamewave/include/lualib.h"
+#include "lauxlib.h"
+#include "lua.h"
+#include "lualib.h"
 }
 
 #include "global.h"

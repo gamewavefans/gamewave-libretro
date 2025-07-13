@@ -27,7 +27,7 @@ namespace zlua::IFrame
         auto location = zlua::RM::getResourcePath(i);
         auto targetPath = *location / s;
 
-        log_cb(RETRO_LOG_DEBUG, "\tcalled iframe.Load(%d, \"%s\") (\"%s\")-> %d\n", i, s.c_str(), targetPath.c_str(), currentID);
+        log_cb(RETRO_LOG_DEBUG, "\tcalled iframe.Load(%d, \"%s\") (\"%s\")-> %d - UNIMPLEMENTED\n", i, s.c_str(), targetPath.c_str(), currentID);
         lua_pushnumber(L, (lua_Number)currentID);
         ++currentID;
         return 1;
@@ -37,27 +37,27 @@ namespace zlua::IFrame
     {
         int i = luaL_checkint(L, 1);
         iFrames.at(i) = nullptr;
-        log_cb(RETRO_LOG_DEBUG, "\tcalled iframe.Unload(%d)\n", i);
+        log_cb(RETRO_LOG_DEBUG, "\tcalled iframe.Unload(%d) - UNIMPLEMENTED\n", i);
         return 0;
     }
 
     int zlua_iframe_show(lua_State *L)
     {
         int i = luaL_checkint(L, 1);
-        log_cb(RETRO_LOG_DEBUG, "\tcalled iframe.Show(%d)\n", i);
+        log_cb(RETRO_LOG_DEBUG, "\tcalled iframe.Show(%d) - UNIMPLEMENTED\n", i);
         return 0;
     }
 
     int zlua_iframe_show_predefined(lua_State *L)
     {
         int i = luaL_checkint(L, 1);
-        log_cb(RETRO_LOG_DEBUG, "\tcalled iframe.ShowPredefined(%d)\n", i);
+        log_cb(RETRO_LOG_DEBUG, "\tcalled iframe.ShowPredefined(%d) - UNIMPLEMENTED\n", i);
         return 0;
     }
 
     int zlua_iframe_clear(lua_State *L)
     {
-        log_cb(RETRO_LOG_DEBUG, "\tcalled iframe.Clear()\n");
+        log_cb(RETRO_LOG_DEBUG, "\tcalled iframe.Clear() - UNIMPLEMENTED\n");
         return 0;
     }
 

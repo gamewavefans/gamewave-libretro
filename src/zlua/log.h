@@ -5,8 +5,8 @@
 #include "libretro-common/include/libretro.h"
 extern "C"
 {
-#include "lua_gamewave/include/lauxlib.h"
-#include "lua_gamewave/include/lua.h"
+#include "lauxlib.h"
+#include "lua.h"
 }
 
 #include "global.h"

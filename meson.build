@@ -8,11 +8,8 @@ project(
 
 # subdir('docs')
 
-lua_gamewave_proj = subproject('lua_gamewave')
-lua_gamewave = lua_gamewave_proj.get_variable('lua_dep')
 dep_gamewave_libretro = include_directories('src')
 dep_deps = include_directories('deps')
-dep_subprojects = include_directories('subprojects')
 
 # zlib, Threads::Threads
 # ffmpeg::avformat
@@ -23,7 +20,7 @@ dep_subprojects = include_directories('subprojects')
 # libyuv
 
 dependencies = [
-  lua_gamewave,
+  dependency('lua_gamewave'),
   dependency('zlib'),
   dependency('libavformat', version: '>= 57.33'),
   dependency('libavcodec', version: '>= 57.37'),
@@ -64,7 +61,7 @@ gamewave_libretro = both_libraries(
   # 'src/zlua/uart.cpp',
   # 'src/zlua/zfile.cpp',
   'src/zlua/zmath.cpp',
-  include_directories: [dep_gamewave_libretro, dep_deps, dep_subprojects],
+  include_directories: [dep_gamewave_libretro, dep_deps], #, dep_subprojects],
   version: meson.project_version(),
   soversion: meson.project_version(),
   dependencies: dependencies,
@@ -72,6 +69,13 @@ gamewave_libretro = both_libraries(
   # prevents library getting named libgamewave_libretro
   name_prefix: '',
 )
+
+# experiment = executable(
+#   'experiment',
+#   'src/helpers/filepath.cpp',
+#   'experiment.cpp',
+#   include_directories: [dep_gamewave_libretro, dep_deps, dep_subprojects], #, dep_ffmpeg],
+# )
 
 gtest_proj = subproject('gtest')
 gtest_dep = gtest_proj.get_variable('gtest_dep')

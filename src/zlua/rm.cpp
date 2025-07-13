@@ -20,6 +20,7 @@ namespace zlua::RM
 
     int zlua_rm_open_resource(lua_State *L)
     {
+        // TODO: handle reusing IDs when one of them is a nullptr
         std::string name = luaL_checkstring(L, 1);
         fs::path *path = new fs::path{name};
         resources.push_back(path);
@@ -32,7 +33,7 @@ namespace zlua::RM
     int zlua_rm_close_resource(lua_State *L)
     {
         int i = luaL_checkint(L, 1);
-        // TODO: handle the exception when index is out of bounds
+        // TODO: handle the exception when index is out of bound
         resources.at(i) = nullptr;
         return 0;
     }

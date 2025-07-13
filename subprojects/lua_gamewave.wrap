@@ -2,6 +2,3 @@
 url = https://github.com/gamewavefans/lua_gamewave.git
 revision = head
 depth = 1
-
-[provide]
-dependency_names = lua_gamewave

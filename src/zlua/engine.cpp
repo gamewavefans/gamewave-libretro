@@ -35,7 +35,7 @@ namespace zlua::Engine
 
     int zlua_engine_version(lua_State *L)
     {
-        log_cb(RETRO_LOG_DEBUG, "\tcalled engine.Version() - UNIMPLEMENTED\n");
+        log_cb(RETRO_LOG_DEBUG, "\tcalled engine.Version() -> 0.0.1.emuwave - UNIMPLEMENTED\n");
         lua_pushstring(L, "0.0.1.emuwave");
         return 1;
     }
@@ -43,7 +43,7 @@ namespace zlua::Engine
     // TODO:
     int zlua_engine_zmm_get_total_free_memory(lua_State *L)
     {
-        log_cb(RETRO_LOG_DEBUG, "\tcalled engine.GetTotalFreeMemory() - UNIMPLEMENTED\n");
+        log_cb(RETRO_LOG_DEBUG, "\tcalled engine.GetTotalFreeMemory() -> 1234 - UNIMPLEMENTED\n");
         lua_pushnumber(L, (lua_Number)1234);
         return 1;
     }
