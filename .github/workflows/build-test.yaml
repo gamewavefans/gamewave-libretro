@@ -49,8 +49,10 @@ jobs:
       - name: Install ffmpeg
         run: |
           vcpkg install pkgconf
-          winget install "FFmpeg (Shared)" --disable-interactivity --accept-source-agreements
+          # winget install "FFmpeg (Shared)" --disable-interactivity --accept-source-agreements
+          Invoke-WebRequest https://github.com/BtbN/FFmpeg-Builds/releases/download/latest/ffmpeg-master-latest-win64-gpl-shared.zip -OutFile ffmpeg.zip
+          Expand-Archive -Path ffmpeg.zip -DestinationPath ffmpeg
       - name: Build
         run: |
-          meson setup build -DCMAKE_TOOLCHAIN_FILE=C:\dev\vcpkg\scripts\buildsystems\vcpkg.cmake
+          meson setup build
           meson compile -C build
