@@ -20,7 +20,14 @@ jobs:
         run: |
           python -m pip install meson>=1.7.2 ninja
       - name: Install ffmpeg
-        run: sudo apt install -y ffmpeg libavcodec-dev libswscale-dev libavutil-dev libavformat-dev
+        uses: awalsh128/cache-apt-pkgs-action@v1
+        with:
+          packages: ffmpeg libavcodec-dev libswscale-dev libavutil-dev libavformat-dev gcc-14 g++-14
+          version: 1.0
+      - name: "Use GCC 14"
+        run: |
+          sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-14 100 --slave /usr/bin/g++ g++ /usr/bin/g++-14 --slave /usr/bin/gcov gcov /usr/bin/gcov-14
+          sudo update-alternatives --set gcc /usr/bin/gcc-14
       - name: Build
         run: |
           meson setup build
