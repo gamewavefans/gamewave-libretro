@@ -52,5 +52,5 @@ jobs:
           winget install "FFmpeg (Shared)" --disable-interactivity --accept-source-agreements
       - name: Build
         run: |
-          meson setup build
+          meson setup build -DCMAKE_TOOLCHAIN_FILE=C:\dev\vcpkg\scripts\buildsystems\vcpkg.cmake
           meson compile -C build
