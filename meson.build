@@ -22,8 +22,8 @@ dep_deps = include_directories('deps')
 dependencies = [
   dependency('lua_gamewave'),
   dependency('zlib'),
-  dependency('libavformat', version: '>= 57.33'),
-  dependency('libavcodec', version: '>= 57.37'),
+  dependency('libavformat'),
+  dependency('libavcodec'),
   dependency('libavutil'),
   # dependency('libswresample'),
   dependency('libswscale'),
