@@ -70,13 +70,6 @@ gamewave_libretro = both_libraries(
   name_prefix: '',
 )
 
-# experiment = executable(
-#   'experiment',
-#   'src/helpers/filepath.cpp',
-#   'experiment.cpp',
-#   include_directories: [dep_gamewave_libretro, dep_deps, dep_subprojects], #, dep_ffmpeg],
-# )
-
 gtest_proj = subproject('gtest')
 gtest_dep = gtest_proj.get_variable('gtest_dep')
 gmock_dep = gtest_proj.get_variable('gmock_dep')
