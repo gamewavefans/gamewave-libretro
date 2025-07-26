@@ -46,7 +46,7 @@ std::string getPath(std::string path)
             if (!foundElement)
             {
                 // TODO: use throw instead of cerr?
-                std::cerr << "Could not find element " << itLower << " in path " << newPath.string() << std::endl;
+                std::cerr << std::format("Could not find element {} in path {}", itLower, newPath.string()) << std::endl;
                 return "";
             }
         }
@@ -55,7 +55,7 @@ std::string getPath(std::string path)
             auto newPathComponents = std::distance(newPath.begin(), newPath.end());
             if (components != newPathComponents)
             {
-                std::cout << std::format("Expected {} elements, got {}", components, newPathComponents) << std::endl;
+                std::cerr << std::format("Expected {} elements, got {}", components, newPathComponents) << std::endl;
                 return "";
             }
         }
