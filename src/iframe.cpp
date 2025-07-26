@@ -93,7 +93,6 @@ void IFrame::decode(AVCodecContext *ctx, AVFrame *frame, AVPacket *pkt)
         }
         // frame is ready
         frame = convertFrame(frame, targetPixelFormat);
-        log_cb(RETRO_LOG_DEBUG, "uuuuuu %d %d %d", frame->width, frame->height, frame->linesize[0]);
         framebuffer.assign(frame->data[0], &frame->data[0][frame->height * frame->linesize[0]]);
     }
 }

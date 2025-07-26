@@ -8,7 +8,7 @@ namespace zlua::Log
         {"Log", zlua_log_log},
         {"SetLevel", zlua_log_setLevel},
         // TODO: implement
-        // {"SetModule", log_set_module},
+        // {"SetModule", log_set_module}, - unused
         // {"PrintRaw", log_print_raw},
         // {"PrintLine", log_print_line},
         // {"DebugSetState", log_debug_set_state},
@@ -42,7 +42,7 @@ namespace zlua::Log
     {
         int level = luaL_checkint(L, 1);
         zlua_log_level = static_cast<LogLevel>(level);
-        log_cb(RETRO_LOG_DEBUG, "called log.SetLevel(%s)\n", getLogLevelName(level));
+        log_cb(RETRO_LOG_DEBUG, "\tcalled log.SetLevel(%s)\n", getLogLevelName(level));
         return 0;
     }
 

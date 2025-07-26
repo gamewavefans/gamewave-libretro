@@ -54,7 +54,7 @@ FIMG::FIMG(fs::path &filename)
         engine.seekg(currentPos, std::ios::beg);
 
         files.insert({name, data});
-        log_cb(RETRO_LOG_DEBUG, "FIMG: found file %d/%d named \"%s\"\n", i + 1, filesCount, name);
+        log_cb(RETRO_LOG_DEBUG, "FIMG: found file %2.d/%d named \"%s\"\n", i + 1, filesCount, name);
     }
 };
 

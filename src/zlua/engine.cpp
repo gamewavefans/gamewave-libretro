@@ -4,13 +4,13 @@ namespace zlua::Engine
 {
     static const luaL_reg zlua_engine_lib[] = {
         // {"CloseTray", engine_},
-        // {"DR_AddPairCapping", engine_},
-        // {"DR_ClearPairCappings", engine_},
-        // {"DR_SetAbsoluteCapping", engine_},
-        // {"DR_SetDebug", engine_},
+        // {"DR_AddPairCapping", engine_}, - unused
+        // {"DR_ClearPairCappings", engine_}, - unused
+        // {"DR_SetAbsoluteCapping", engine_}, - unused
+        // {"DR_SetDebug", engine_}, - unused
         // {"DR_SetEnable", engine_},
         // {"EjectTray", engine_},
-        // {"GetLineTraceMode", engine_},
+        // {"GetLineTraceMode", engine_}, - unused
         // {"GetNumOverlays", engine_},
         // {"GetNumTextures", engine_},
         // {"GetTrayState", engine_},
@@ -22,9 +22,9 @@ namespace zlua::Engine
         // {"ZMM_GetMaxFreeMemory", engine_},
         // {"ZMM_GetTotalAllocMemory", engine_},
         {"ZMM_GetTotalFreeMemory", zlua_engine_zmm_get_total_free_memory},
-        // {"ZMM_SetCheckPoint", engine_},
-        // {"ZMM_SetLeakDebugMode", engine_},
-        // {"ZMM_VerifyCheckPoint", engine_},
+        // {"ZMM_SetCheckPoint", engine_}, - unused
+        // {"ZMM_SetLeakDebugMode", engine_}, - unused
+        // {"ZMM_VerifyCheckPoint", engine_}, - unused
         {nullptr, nullptr}};
 
     int zlua_engine_loadlibrary(lua_State *L)
