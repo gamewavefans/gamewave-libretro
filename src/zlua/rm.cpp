@@ -3,13 +3,15 @@
 namespace zlua::RM
 {
     int currentID = {0};
+
+    /// resources keeps array of absolute paths to game resources
     std::vector<fs::path *> resources = {};
 
     static const luaL_reg zlua_rm_lib[] = {
         {"CloseResource", zlua_rm_close_resource},
         // {"LoadFile", zlua_rm_load_file},
         {"OpenResource", zlua_rm_open_resource},
-        // {"UnloadFile", zlua_rm_unload_file},
+        // {"UnloadFile", zlua_rm_unload_file}, - unused
         {nullptr, nullptr}};
 
     int zlua_rm_loadlibrary(lua_State *L)
@@ -20,9 +22,15 @@ namespace zlua::RM
 
     int zlua_rm_open_resource(lua_State *L)
     {
-        // TODO: handle reusing IDs when one of them is a nullptr
+        // TODO: handle reusing IDs when one of them is a nullptr ?
         std::string name = luaL_checkstring(L, 1);
-        fs::path *path = new fs::path{name};
+        auto relativeName = name;
+        if (relativeName != "" && relativeName[0] == '/')
+        {
+            relativeName.erase(0, 1);
+        }
+        fs::path *path = new fs::path{GameBasePath};
+        *path /= relativeName;
         resources.push_back(path);
         log_cb(RETRO_LOG_DEBUG, "\tcalled rm.OpenResource(\"%s\") -> %d\n", name.c_str(), currentID);
         lua_pushnumber(L, (lua_Number)currentID);

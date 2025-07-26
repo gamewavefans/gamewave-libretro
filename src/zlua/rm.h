@@ -14,6 +14,7 @@ extern "C"
 
 #include "global.h"
 
+extern std::filesystem::path GameBasePath;
 // TODO: keep RM or rename to ResourceManager?
 namespace zlua::RM
 {

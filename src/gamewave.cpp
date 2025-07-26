@@ -1,10 +1,13 @@
 #include "gamewave.h"
 
-Gamewave::Gamewave(const retro_environment_t env_cb, const retro_log_printf_t log_cb)
+std::filesystem::path GameBasePath = {};
+Gamewave::Gamewave(const retro_environment_t env_cb, const retro_log_printf_t log_cb, const char *inputPath)
 {
+    fs::path path = inputPath;
+    GameBasePath = path.parent_path();
     this->setEnvironmentCallback(env_cb);
     this->setLogCallback(log_cb);
-
+    log_cb(RETRO_LOG_INFO, "set gameBasePath to %s\n", GameBasePath.c_str());
     // create Lua machine
     L = lua_open();
     loadLuaLibraries();
@@ -55,7 +58,7 @@ void Gamewave::loadLuaLibraries()
     const luaL_reg *lib = lualibs;
     for (; lib->func; lib++)
     {
-        log_cb(RETRO_LOG_DEBUG, "Loading %s\n", lib->name);
+        log_cb(RETRO_LOG_DEBUG, "Loading lua library %s\n", lib->name);
         lib->func(L);     /* open library */
         lua_settop(L, 0); /* discard any results */
     }

@@ -159,7 +159,7 @@ void retro_run(void)
 // TODO: Load a cartridge
 bool retro_load_game(const struct retro_game_info *game)
 {
-    gamewave.reset(new Gamewave(env_cb, log_cb));
+    gamewave.reset(new Gamewave(env_cb, log_cb, game->path));
     log_cb(RETRO_LOG_DEBUG, "meta: %s\n", game->meta);
 
     return gamewave->loadGame(game->path);

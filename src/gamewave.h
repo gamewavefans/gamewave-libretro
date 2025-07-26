@@ -44,7 +44,7 @@ using hookFunc = std::function<void(lua_State *L, lua_Debug *ar)>;
 class Gamewave
 {
 public:
-    Gamewave(const retro_environment_t env_cb, const retro_log_printf_t log_cb);
+    Gamewave(const retro_environment_t env_cb, const retro_log_printf_t log_cb, const char *inputPath);
     ~Gamewave();
     void setEnvironmentCallback(const retro_environment_t env_cb);
     void setLogCallback(const retro_log_printf_t log_cb);
