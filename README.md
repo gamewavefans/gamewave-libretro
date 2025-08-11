@@ -40,10 +40,21 @@ meson test -C build
 ## What's working
 
 - loading .diz files
+- lua libraries
+  - bit
+  - zmath
 
 ## What's not working
 
 - everything
+- lua libraries
+  - all of them
+  - engine
+  - gl
+  - iframe
+  - log
+  - rm - 50% - missing `LoadFile` / `UnloadFile`
+  - time - 50% - issue with `sleep()`
 - font
 - video
 - audio

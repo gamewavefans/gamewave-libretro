@@ -128,7 +128,7 @@ bool Gamewave::loadGame(const char *inputPath)
 
     // display launching iframe
     auto launch = fimg->getFile("launching.m2v");
-    auto movie = IFrame(launch);
+    auto movie = filetypes::IFrame(launch);
     auto image = movie.getFramebuffer();
     std::memcpy(framebuffer.begin(), image->data(), image->size());
 

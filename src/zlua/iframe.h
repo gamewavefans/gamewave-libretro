@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vector>
+#include <fstream>
 #include <filesystem>
 
 #include "libretro-common/include/libretro.h"
@@ -14,6 +15,7 @@ extern "C"
 
 #include "global.h"
 #include "zlua/rm.h"
+#include "filetypes/iframe.h"
 
 /*
 - `iframe`
@@ -27,9 +29,8 @@ namespace zlua::IFrame
 {
   namespace fs = std::filesystem;
 
-  // TODO: what type should iFrame be? We could basically store images here
-  using iFrame = void;
-  extern std::vector<iFrame *> iFrames;
+  // TODO: what type should iFrame be? Can it be just filetypes::IFrame ?
+  extern std::vector<std::shared_ptr<filetypes::IFrame>> iFrames;
   extern int currentID;
 
   extern "C"
@@ -50,4 +51,6 @@ namespace zlua::IFrame
   int getIframeID();
 
   int getIframeCount();
+
+  void reset();
 }

@@ -2,10 +2,13 @@
 
 namespace zlua::RM
 {
-    int currentID = {0};
+    int currentResourceID = {0};
+    /// resources keeps array of absolute paths to game resources (usually directories)
+    std::vector<std::shared_ptr<fs::path>> resources = {};
 
-    /// resources keeps array of absolute paths to game resources
-    std::vector<fs::path *> resources = {};
+    id_t currentFileID = {0};
+    /// files keeps array of absolute paths to game files
+    std::vector<std::shared_ptr<fs::path>> files = {};
 
     static const luaL_reg zlua_rm_lib[] = {
         {"CloseResource", zlua_rm_close_resource},
@@ -16,6 +19,7 @@ namespace zlua::RM
 
     int zlua_rm_loadlibrary(lua_State *L)
     {
+        reset();
         luaL_openlib(L, "rm", zlua_rm_lib, 0);
         return 1;
     }
@@ -29,12 +33,12 @@ namespace zlua::RM
         {
             relativeName.erase(0, 1);
         }
-        fs::path *path = new fs::path{GameBasePath};
+        std::shared_ptr<fs::path> path = std::make_shared<fs::path>(GameBasePath);
         *path /= relativeName;
         resources.push_back(path);
-        log_cb(RETRO_LOG_DEBUG, "\tcalled rm.OpenResource(\"%s\") -> %d\n", name.c_str(), currentID);
-        lua_pushnumber(L, (lua_Number)currentID);
-        ++currentID;
+        log_cb(RETRO_LOG_DEBUG, "\tcalled rm.OpenResource(\"%s\") -> %d\n", name.c_str(), currentResourceID);
+        lua_pushnumber(L, (lua_Number)currentResourceID);
+        ++currentResourceID;
         return 1;
     }
 
@@ -56,8 +60,26 @@ namespace zlua::RM
         return 0;
     }
 
-    fs::path *getResourcePath(int i)
+    std::shared_ptr<fs::path> getResourcePath(int i)
     {
         return resources.at(i);
+    }
+
+    void reset()
+    {
+        for (auto r : resources)
+        {
+            r.reset();
+        }
+        resources.clear();
+        // should be always 0, but it's better to be safe than sorry
+        currentResourceID = resources.size();
+
+        for (auto f : files)
+        {
+            f.reset();
+        }
+        files.clear();
+        currentFileID = files.size();
     }
 }

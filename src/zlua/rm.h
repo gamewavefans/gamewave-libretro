@@ -20,10 +20,11 @@ namespace zlua::RM
 {
     namespace fs = std::filesystem;
 
-    // for now we add stuff into the vector, we may remove values, but never keys
-    extern int currentID;
+    // for now we add stuff into the vector, we may remove values, but never keys, until the console restart
+    // extern int currentID;
 
-    // extern std::vector<fs::path *> resources;
+    extern std::vector<std::shared_ptr<fs::path>> resources;
+    extern std::vector<std::shared_ptr<fs::path>> files;
 
     extern "C"
     {
@@ -33,12 +34,14 @@ namespace zlua::RM
 
         int zlua_rm_close_resource(lua_State *L);
 
-        // only used in Letter Zap!
+        // only used in "Letter Zap!""
         int zlua_rm_load_file(lua_State *L);
 
         // unused
         int zlua_rm_unload_file(lua_State *L);
+
+        void reset();
     }
 
-    fs::path *getResourcePath(int i);
+    std::shared_ptr<fs::path> getResourcePath(int i);
 }

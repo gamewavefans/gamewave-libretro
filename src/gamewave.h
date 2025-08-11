@@ -19,7 +19,7 @@ extern "C"
 
 #include "libretro-common/include/libretro.h"
 
-#include "iframe.h"
+#include "filetypes/iframe.h"
 #include "console_info.h"
 #include "helpers.h"
 

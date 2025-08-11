@@ -37,7 +37,7 @@ namespace zlua::ZMath
     int zlua_zmath_rand_seed(lua_State *L)
     {
         int seed = luaL_checkint(L, 1);
-        srand(seed);
+        std::srand(seed);
         log_cb(RETRO_LOG_DEBUG, "\tcalled zmath.RandSeed(%d)\n", seed);
         return 0;
     }
