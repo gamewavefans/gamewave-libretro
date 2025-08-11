@@ -36,7 +36,7 @@ gamewave_libretro = both_libraries(
   'src/libretro.cpp',
   'src/gamewave.cpp',
   'src/helpers.cpp',
-  'src/iframe.cpp',
+  'src/filetypes/iframe.cpp',
   'src/filetypes/diz.cpp',
   'src/filetypes/fimg.cpp',
   'src/filetypes/zbc.cpp',
