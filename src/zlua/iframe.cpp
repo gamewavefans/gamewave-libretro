@@ -8,7 +8,7 @@ namespace zlua::IFrame
     static const luaL_reg zlua_iframe_lib[] = {
         // {"Clear", zlua_iframe_clear},
         {"Load", zlua_iframe_load},
-        // {"Show", zlua_iframe_show},
+        {"Show", zlua_iframe_show},
         // TODO: add access to FIMG here
         // {"ShowPredefined", zlua_iframe_show_predefined},
         {"Unload", zlua_iframe_unload},
@@ -27,15 +27,14 @@ namespace zlua::IFrame
         std::string s = luaL_checkstring(L, 2);
 
         auto location = zlua::RM::getResourcePath(resource);
-        auto targetPath = *location / s;
+        auto targetPath = getPath((*location / s).string());
         // read file data
         // TODO: standalone read function
         std::ifstream videoFile{targetPath, std::ios::binary | std::ios::ate};
-        auto size = videoFile.tellg();
+        auto size = static_cast<size_t>(videoFile.tellg());
         videoFile.seekg(0, std::ios::beg);
         std::vector<char> buffer(size, 0);
         videoFile.read(buffer.data(), size);
-
         // TODO: won't this leak memory??
         auto iframe = std::make_shared<filetypes::IFrame>(filetypes::IFrame(buffer));
         iFrames.push_back(iframe);

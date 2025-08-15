@@ -82,3 +82,7 @@ To use the core in the flatpak version of theretroarch:
 
 - link the .so file to `.var/app/org.libretro.RetroArch/config/retroarch/cores/`
 - link the .info file to `/var/lib/flatpak/app/org.libretro.RetroArch/current/active/files/share/libretro/info/`
+
+## TODO
+
+- add \n to all logs to flush them as soon as they arrive, in case of fatal error?

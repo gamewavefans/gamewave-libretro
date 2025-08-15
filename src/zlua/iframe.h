@@ -14,6 +14,7 @@ extern "C"
 }
 
 #include "global.h"
+#include "helpers/filepath.h"
 #include "zlua/rm.h"
 #include "filetypes/iframe.h"
 

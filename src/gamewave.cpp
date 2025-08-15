@@ -33,17 +33,17 @@ void Gamewave::loadLuaLibraries()
         {"debug", luaopen_debug},
         {"engine", zlua::Engine::zlua_engine_loadlibrary},
         {"gl", zlua::GL::zlua_gl_loadlibrary},
-        // {"audio", luaopen_audio},
+        {"audio", zlua::Audio::zlua_audio_loadlibrary},
         {"bit", zlua::Bit::zlua_bit_loadlibrary},
-        // {"eeprom", luaopen_eeprom},
+        {"eeprom", zlua::EEPROM::zlua_eeprom_loadlibrary},
         {"zlua", zlua::Log::zlua_log_loadlibrary},
         // {"exp_int", luaopen_exp_int},
-        // {"font", luaopen_font},
+        {"font", zlua::Font::zlua_font_loadlibrary},
         // {"gl", luaopen_gl},
         {"iframe", zlua::IFrame::zlua_iframe_loadlibrary},
         // {"input", luaopen_input},
         // {"log", *zlogre},
-        // {"movie", nullptr},
+        {"movie", zlua::Movie::zlua_movie_loadlibrary},
         // {"pointer", luaopen_pointer},
         {"rm", zlua::RM::zlua_rm_loadlibrary},
         // {"spi", luaopen_spi},
@@ -236,9 +236,6 @@ std::string Gamewave::dumpLuaStack()
 
 void Gamewave::luaFunction()
 {
-    // TODO: remove this after FIM testing
-    std::this_thread::sleep_for(2s);
-
     auto err = lua_pcall(L, 0, -1, 0);
     if (err != 0)
     {

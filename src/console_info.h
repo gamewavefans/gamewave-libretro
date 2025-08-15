@@ -16,8 +16,8 @@ namespace info
         static constexpr float DATA_RATIO = 3.0 / 2.0;
         static constexpr float RATIO = 4.0 / 3.0;
 
-        // TODO: check, movies use 29.97
-        static constexpr double REFRESH_RATE = 60.0;
+        // TODO: check, movies use 29.97002997002997, or simply 30000/1001
+        static constexpr double REFRESH_RATE = 30'000 / 1'001;
 
     }
     // namespace memory
@@ -33,7 +33,8 @@ namespace info
     namespace audio
     {
         // TODO: check if correct
-        static constexpr double SAMPLE_RATE = 44100;
+        // Movies use sither 44'100 or 48'000
+        static constexpr double SAMPLE_RATE = 44'100;
         static constexpr int CHANNELS = 2;
     }
 }
